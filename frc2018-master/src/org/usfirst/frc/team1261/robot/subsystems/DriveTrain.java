@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1261.robot.subsystems;
 
+import java.awt.Robot;
+
 import org.usfirst.frc.team1261.robot.OI;
 import org.usfirst.frc.team1261.robot.RobotMap;
 import org.usfirst.frc.team1261.robot.commands.AutoPivotHead;
@@ -85,7 +87,6 @@ public class DriveTrain extends Subsystem {
 		 
 		 leftMotorFront.setSensorPhase(true);
 		 rightMotorFront.setSensorPhase(true);
-		 
 		 
 		 leftMotorFront.setInverted(false);
 		 rightMotorFront.setInverted(true);
@@ -463,14 +464,22 @@ public class DriveTrain extends Subsystem {
 		double acceleration_limit = .25;
 		double rio_update = 0.05;
 		double safe_mode_speed = 0.25;
-		
+		/*
 		if (OI.getDriverJoystick().getRawButton(1)) {
 			speed_limit = safe_mode_speed;
+			System.out.println("BEE BEE BUMBLE BEE");
 		}
 		else {
 			speed_limit = regular_speed_limit;
 		}
-		
+		*/
+		if (OI.getDriverJoystick().getRawAxis(2) >= 0.5) {
+			speed_limit = safe_mode_speed;
+			System.out.println();
+		}
+		else {
+			speed_limit = regular_speed_limit;
+		}
 		throttle_scaler = speed_limit;
 		th = throttle_scaler * th; // to meters per second
 		
@@ -527,14 +536,12 @@ public class DriveTrain extends Subsystem {
 		
 		
 		// ro is being dampened by the speed limit, even though it should be unbounded
-		/*
 		if (ro > speed_limit) {
 			ro = speed_limit;
 		}
 		if (ro < -speed_limit) {
 			ro = -speed_limit;
 		}
-		*/
 		
 		// circumference of wheel = 4 * pi
 		// circumference of COMPETITION wheel = 8 * pi

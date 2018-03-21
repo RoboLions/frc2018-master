@@ -178,17 +178,16 @@ public class Robot extends TimedRobot {
 		
 		//visionThread = new Thread(() -> {
 			// Get the UsbCamera from CameraServer
-			CameraServer camera = CameraServer.getInstance(); 
-			camera.startAutomaticCapture("cam0", "/dev/video0");
+			UsbCamera camera = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");
 			// Set the resolution
-			//camera.setResolution(420, 240);
-			//camera.setFPS(10);
+			camera.setResolution(320,240);
+			camera.setFPS(10);
 
 			// Get a CvSink. This will capture Mats from the camera
-			CvSink cvSink = CameraServer.getInstance().getVideo();
+			//CvSink cvSink = CameraServer.getInstance().getVideo();
 			// Setup a CvSource. This will send images back to the Dashboard
-			CvSource outputStream
-					= CameraServer.getInstance().putVideo("Gray", 640, 480);
+			//CvSource outputStream
+					//= CameraServer.getInstance().putVideo("Gray", 640, 480);
 
 			
 			// Mats are very memory expensive. Lets reuse this Mat.
@@ -248,7 +247,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		Robot.actuator.boomMotor.setInverted(true);
+		//Robot.actuator.boomMotor.setInverted(true);
 		//Robot.actuator.reverseSensorPhase();
 		Robot.actuator.resetEncoders();
 		m_autonomousCommand = m_chooser.getSelected();
@@ -355,7 +354,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-		Robot.actuator.boomMotor.setInverted(false);
+		//Robot.actuator.boomMotor.setInverted(false);
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
