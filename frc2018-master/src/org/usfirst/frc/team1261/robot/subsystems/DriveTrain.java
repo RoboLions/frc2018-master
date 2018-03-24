@@ -38,10 +38,10 @@ public class DriveTrain extends Subsystem {
 	public static final double WHEEL_DIAMETER_2017 = 0.10;
 	public static final double DIAMETER_INCHES = 10;// 2018 10
 	public static final double IN_TO_M = .0254;//.0254
-	//public static final double WHEEL_DIAMETER_2018 = DIAMETER_INCHES * IN_TO_M; // in meters
+	public static final double WHEEL_DIAMETER_2018 = DIAMETER_INCHES * IN_TO_M; // in meters
 	//public static final double WHEEL_DIAMETER_2018 = ((DIAMETER_INCHES * .94) * IN_TO_M); // in meters
-	// public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER_2018 * Math.PI;//3.14159;//(Math.PI;)
-	public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER_2017 * Math.PI;//3.14159;//(Math.PI;)
+    public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER_2018 * Math.PI;//3.14159;//(Math.PI;)
+	//public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER_2017 * Math.PI;//3.14159;//(Math.PI;)
 	public static final double TICKS_PER_METER = (double)MOTOR_ENCODER_CODES_PER_REV * (double)(1/WHEEL_CIRCUMFERENCE);
 			//1.0/0.59208918;
 //			//1.6889348;
@@ -390,7 +390,7 @@ public class DriveTrain extends Subsystem {
 		// take input throttle from joystick and transform 
 		// meters per second --> encoder counts per 100 milliseconds
 		
-		double speed_limit = .5; // 1
+		double speed_limit = 2; // 1
 		
 		if (th > speed_limit) {
 			th = speed_limit;

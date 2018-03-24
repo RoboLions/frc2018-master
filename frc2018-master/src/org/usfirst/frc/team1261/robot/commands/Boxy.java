@@ -14,11 +14,11 @@ public class Boxy extends CommandGroup {
     	//addSequential(new AutoClockwiseTurn()); //first turn
     	//addSequential(new AutoPivotHead(90,4));
     	//addSequential(new AutoPivotHead(0.0, 5.0));
-    	//addSequential(new AutoMove(0.5, 0.0, 10)); //move forward
+    	//addSequential(new AutoMove(1, 0.0, 10)); //move forward
     	//addSequential(new AutoPivotHead(90,2));
     	//addSequential(new AutoPivotHead(-90,2));
     	addSequential(new AutoDartMove(0, 0, 3));//move into switch scoring pos
-    	addSequential(new ClawRetract());//drop
+    	//addSequential(new ClawRetract());//drop
     	//addSequential(new AutoClockwiseTurn()); //first turn
     	//addSequential(new AutoPivotHead(-90,4));
     	//addSequential(new AutoPivotHead(90,4));

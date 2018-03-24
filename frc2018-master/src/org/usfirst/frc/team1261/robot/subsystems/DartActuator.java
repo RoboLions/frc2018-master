@@ -29,20 +29,20 @@ public class DartActuator extends Subsystem {
 	
 	public static final int VERT_PIDF_PROFILE = 0;
 	public static final double VERT_GAIN_F = 1;
-	public static final double VERT_GAIN_P = 8; // 1.2
+	public static final double VERT_GAIN_P = 10; // 1.2
 	public static final double VERT_GAIN_I = 0;	
 	public static final double VERT_GAIN_D = 0;
 	public static final double VERT_RAMPRATE = 0;
 	public static final int BOOM_PIDF_PROFILE = 0;
 	public static final double BOOM_GAIN_F = 1;
-	public static final double BOOM_GAIN_P = 8; // 1.2
+	public static final double BOOM_GAIN_P = 10; // 1.2
 	public static final double BOOM_GAIN_I = 0;	
 	public static final double BOOM_GAIN_D = 0;
 	public static final double BOOM_RAMPRATE = 0;//0.5;
-	public static final double MAX_ENC_BOOM = 1501; 
+	public static final double MAX_ENC_BOOM = 400; 
 	public static final double MAX_ENC_VERT = 700; // these are for testing purposes
 
-	public static final double MAX_ENC_COUNTS = 4096; //8192;
+	public static final double MAX_ENC_COUNTS = 5215; //8192;
 	
 	public static final double VERT_LENGTH = 0;
 	public static final double BOOM_LENGTH = 0;
@@ -125,9 +125,16 @@ public class DartActuator extends Subsystem {
     	return(vertMotor.getSensorCollection().getQuadraturePosition());
     }
     
+    /*
+    public static double getBoomEncoderGivenAngle(double boom_angle) {
+    	double new_angle = boom_angle - BOOM_OFFSET;
+    	
+    }
+    */
+    
     // This func returns encoder angle in degrees of the boom arm
     public static double getBoomEncoderAngleinDegrees() {
-    	double angle_offset = 34;
+    	double angle_offset = 30;
     	double boom_enc = Math.abs(getBoomEncoder());
     	double angle = (boom_enc *360) / MAX_ENC_COUNTS;
     	SmartDashboard.putNumber("boom angle", angle + angle_offset);
@@ -145,10 +152,13 @@ public class DartActuator extends Subsystem {
     
 	public static double[] getEndpoint(double boom_angle, double vert_angle) {
 		// boom_angle and vert_angle need to be in degrees
+		// 72.2 cm from pivot to end of frame parameter
+		// 16 in - 40.64
+		// lim = 112.84
 		// boom_angle = phi
 		// vert_angle = gamma
-		double a = 1.0287; // in Meters //40.5 - in inches // vert arm length
-		double b = 1.143; // in Meters //45 - in inches // boom arm length
+		double a = 1.011; // in Meters //40.5 - in inches // vert arm length
+		double b = 1.13; // in Meters //45 - in inches // boom arm length
 		double c = Math.sqrt( // whatever is left in order to form a right triangle
 				    (a * a) +//Math.pow(a, 2) + 
 				    (b * b) -//Math.pow(b, 2) - 
@@ -198,7 +208,7 @@ public class DartActuator extends Subsystem {
     	System.out.println("");
     	System.out.println("xe: " + Double.toString(xe));
     	System.out.println("ye: " + Double.toString(ye));
-    	if  (xe >= 1.16) { // 1.092 // 1.1 //1.1697 = new
+    	if  (xe >= 1.04) { // 1.092 // 1.1 //1.1697 = new // fred: 1.0668 //comp : 1.114
     		status = true;
     	} else {
     		status = false;

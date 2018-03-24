@@ -155,8 +155,8 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Right Start, Right Switch, Back Side", new AutoPath2Mirror());
 		m_chooser.addObject("Left Start, Right Switch, Back Side", new AutoPath3());
 		m_chooser.addObject("Right Start, Left Switch, Back Side", new AutoPath3Mirror());
-		m_chooser.addObject("Left Start, Right Switch, Middle Side", new AutoPath4Mirror());
-		m_chooser.addObject("Right Start, Left Switch, Middle Side", new AutoPath4());
+		m_chooser.addObject("Left Start, Right Switch, Middle Side", new AutoPath4());
+		m_chooser.addObject("Right Start, Left Switch, Middle Side", new AutoPath4Mirror());
 		m_chooser.addObject("Center Start, Left Switch, Front Side", new AutoPath5());
 		m_chooser.addObject("Center Start, Right Switch, Front Side", new AutoPath5Mirror());
 		m_chooser.addObject("Center Start, Left Switch, Back Side", new AutoPath6());
@@ -250,6 +250,7 @@ public class Robot extends TimedRobot {
 		//Robot.actuator.boomMotor.setInverted(true);
 		//Robot.actuator.reverseSensorPhase();
 		Robot.actuator.resetEncoders();
+		Robot.actuator.resetBoomEncoder();
 		m_autonomousCommand = m_chooser.getSelected();
 		String autoName = m_autonomousCommand.getClass().getName();
 		String gameData;

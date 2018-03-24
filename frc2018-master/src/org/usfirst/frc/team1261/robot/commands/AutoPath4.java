@@ -12,7 +12,7 @@ public class AutoPath4 extends CommandGroup {
         System.out.println("Initiating first turn");
         addSequential(new AutoPivotHead(-90, 3)); //first turn
         System.out.println("Moving across the switch");
-        addSequential(new AutoMove(5.9, 0, 5)); //move forward to past the switch
+        addSequential(new AutoMove(5.7, 0, 5)); //move forward to past the switch
         System.out.println("Initiating second turn");
         addSequential(new AutoPivotHead(-90, 3)); //second turn
         System.out.println("Moving to position next to the switch");
@@ -23,5 +23,6 @@ public class AutoPath4 extends CommandGroup {
         System.out.println("Initiate final approach");
         addSequential(new AutoMove(0.5, 0, 3)); //go to switch
         addSequential(new ClawRetract());
+        
     }
 }
