@@ -1,5 +1,4 @@
 package org.usfirst.frc.team1261.robot.commands;
-
 import org.usfirst.frc.team1261.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -10,7 +9,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Boxy extends CommandGroup {
 
     public Boxy() {
-    	 //Robot.actuator.resetBoomEncoder();
+    	//Robot.actuator.resetBoomEncoder();
     	//addSequential(new AutoClockwiseTurn()); //first turn
     	//addSequential(new AutoPivotHead(90,4));
     	//addSequential(new AutoPivotHead(0.0, 5.0));
@@ -67,6 +66,8 @@ public class Boxy extends CommandGroup {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	//Robot.actuator.boomMotor.setInverted(true);
+    	//Robot.actuator.boomMotor.setInverted(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -80,10 +81,13 @@ public class Boxy extends CommandGroup {
 
     // Called once after isFinished returns true
     protected void end() {
+    	//Robot.actuator.boomMotor.setInverted(false);
+    	//Robot.actuator.vertMotor.setInverted(false);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

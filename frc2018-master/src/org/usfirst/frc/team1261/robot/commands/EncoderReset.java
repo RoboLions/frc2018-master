@@ -5,18 +5,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoPath10 extends CommandGroup {
+public class EncoderReset extends CommandGroup {
 
-    public AutoPath10() {
+    public EncoderReset() {
+    	System.out.println("reset");
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
-    	addSequential(new AutoMove(6,0, 7));
-    	addParallel(new AutoDartMove(50,500, 7));
-    	//addSequential(new AutoPivotHead(-90, 2));
-    	addSequential(new AutoMove(.5, 0, 3));
-    	//addSequential(new ClawRetract());
+
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());

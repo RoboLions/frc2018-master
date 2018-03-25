@@ -134,7 +134,7 @@ public class DartActuator extends Subsystem {
     
     // This func returns encoder angle in degrees of the boom arm
     public static double getBoomEncoderAngleinDegrees() {
-    	double angle_offset = 30;
+    	double angle_offset = 37;
     	double boom_enc = Math.abs(getBoomEncoder());
     	double angle = (boom_enc *360) / MAX_ENC_COUNTS;
     	SmartDashboard.putNumber("boom angle", angle + angle_offset);
@@ -208,7 +208,7 @@ public class DartActuator extends Subsystem {
     	System.out.println("");
     	System.out.println("xe: " + Double.toString(xe));
     	System.out.println("ye: " + Double.toString(ye));
-    	if  (xe >= 1.04) { // 1.092 // 1.1 //1.1697 = new // fred: 1.0668 //comp : 1.114
+    	if  (xe >= 1.092) { // 1.092 // 1.1 //1.1697 = new // fred: 1.0668 //comp : 1.114
     		status = true;
     	} else {
     		status = false;

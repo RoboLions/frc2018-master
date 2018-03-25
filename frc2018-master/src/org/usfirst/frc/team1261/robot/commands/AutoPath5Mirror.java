@@ -12,7 +12,7 @@ public class AutoPath5Mirror extends CommandGroup {
     	System.out.println("Initiating first turn");
     	addSequential(new AutoPivotHead(-90, 3)); //first turn
     	System.out.println("Moving to position next to switch");
-    	addSequential(new AutoMove(1.4, 0, 5)); //move forward until parallel with switch deposit area
+    	addSequential(new AutoMove(1.2, 0, 5)); //move forward until parallel with switch deposit area
     	addParallel(new AutoDartMove(0, 250, 3));//extend vert
     	System.out.println("Initiating second turn");
     	addSequential(new AutoPivotHead(90, 3)); //second turn
@@ -20,4 +20,4 @@ public class AutoPath5Mirror extends CommandGroup {
     	addSequential(new AutoMove(1.1, 0, 1)); //go to switch
     	addSequential(new ClawRetract());
     }
-}
+}' '

@@ -63,6 +63,7 @@ import org.usfirst.frc.team1261.robot.commands.AutoPath9;
 import org.usfirst.frc.team1261.robot.commands.AutoPath9Mirror;
 import org.usfirst.frc.team1261.robot.commands.AutoSwitch;
 import org.usfirst.frc.team1261.robot.commands.Boxy;
+import org.usfirst.frc.team1261.robot.commands.EncoderReset;
 import org.usfirst.frc.team1261.robot.commands.JoystickDrive;
 //import org.usfirst.frc.team1261.robot.commands.AcquireCube;
 import org.usfirst.frc.team1261.robot.subsystems.DriveTrain;
@@ -172,7 +173,7 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Left Start, Right Scale", new AutoPath11());
 		m_chooser.addObject("Right Start, Left Scale", new AutoPath11Mirror());
 		m_chooser.addObject("Box", new Boxy());
-		
+		m_chooser.addObject("Reset", new EncoderReset());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		
@@ -181,7 +182,7 @@ public class Robot extends TimedRobot {
 			UsbCamera camera = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");
 			// Set the resolution
 			camera.setResolution(320,240);
-			camera.setFPS(10);
+			camera.setFPS(5);
 
 			// Get a CvSink. This will capture Mats from the camera
 			//CvSink cvSink = CameraServer.getInstance().getVideo();

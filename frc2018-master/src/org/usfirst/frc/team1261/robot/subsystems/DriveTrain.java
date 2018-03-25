@@ -59,7 +59,7 @@ public class DriveTrain extends Subsystem {
 	public static final double MOTOR_GAIN_I = 0.0;	
 	public static final double MOTOR_GAIN_D = 0.3;
 	//public static final double MOTOR_RAMPRATE = 0.5; //1.25
-	public static final double MOTOR_RAMPRATE = 1; //1.25
+	public static final double MOTOR_RAMPRATE = .85; //1.25
 
 	WPI_TalonSRX leftMotorFront = RobotMap.leftDriveMotorFront;
 	WPI_TalonSRX leftMotorBack = RobotMap.leftDriveMotorBack;
@@ -381,7 +381,7 @@ public class DriveTrain extends Subsystem {
 		sb.append(rightMotorFront.getSelectedSensorVelocity(0));
        */
 
-		double throttle_scaler = 1;
+		double throttle_scaler = 1.8;
 		
 		//th = th * 1077;
 		
@@ -390,7 +390,7 @@ public class DriveTrain extends Subsystem {
 		// take input throttle from joystick and transform 
 		// meters per second --> encoder counts per 100 milliseconds
 		
-		double speed_limit = 2; // 1
+		double speed_limit = 1.8; // 1
 		
 		if (th > speed_limit) {
 			th = speed_limit;
@@ -449,7 +449,7 @@ public class DriveTrain extends Subsystem {
 		sb.append(rightMotorFront.getSelectedSensorVelocity(0));
        */
 
-		double throttle_scaler = 1;
+		double throttle_scaler = 2.5; // 1.5 to 2
 		
 		//th = th * 1077;
 		
@@ -459,11 +459,11 @@ public class DriveTrain extends Subsystem {
 		// meters per second --> encoder counts per 100 milliseconds
 		
 		//double speed_limit = 5; // speed limit one meter per second
-		double speed_limit = 1.5; // speed limit one meter per second
-		double regular_speed_limit = 1.5;
-		double acceleration_limit = .25;
+		double speed_limit = 2; // speed limit one meter per second // no suhmed speed limit should not be one meter per second // needs to be 1.5 to 2 meters per second
+		double regular_speed_limit = speed_limit;
+		double acceleration_limit = .25;//.3
 		double rio_update = 0.05;
-		double safe_mode_speed = 0.25;
+		double safe_mode_speed = 0.4;
 		/*
 		if (OI.getDriverJoystick().getRawButton(1)) {
 			speed_limit = safe_mode_speed;
@@ -547,7 +547,7 @@ public class DriveTrain extends Subsystem {
 		// circumference of COMPETITION wheel = 8 * pi
 			double mps_to_encp100ms = TICKS_PER_METER / 10; //METERS_PER_TICKS * 0.01;
 			// transforms meter per second to ticks per 100 milliseconds
-			double Kpivot = 525;
+			double Kpivot = 550; //600
 			//double ThetaCMD = mps_to_encp100ms * th;
 			double ThetaCMD = mps_to_encp100ms * effective_rate_command;
 			//double target_speed = TICKS_PER_METER / 10;

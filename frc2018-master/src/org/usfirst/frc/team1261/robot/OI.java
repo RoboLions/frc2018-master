@@ -100,14 +100,14 @@ public class OI {
 	
 	public OI() {
 		climbButton.whileHeld(new Climb());
-		ccwButton.whenPressed(new AutoCounterclockwiseTurn());
-		cwButton.whenPressed(new AutoClockwiseTurn());
-		reverseButton.whenPressed(new Auto180Turn());
+		ccwButton.whenPressed(new AutoPivotHead(90,1.5));
+		cwButton.whenPressed(new AutoPivotHead(-90,1.5));
+		reverseButton.whenPressed(new AutoPivotHead(180,2.5));
 		clawGrabButton.whenPressed(new ClawGrab()); 
 		clawRetractButton.whenPressed(new ClawRetract());
 		acquireAlignButton.whenPressed(new AutoAcquire());
-		quickLeftTurn.whenPressed(new AutoPivotHead(5,.2));
-		quickRightTurn.whenPressed(new AutoPivotHead(-5,.2));
+		quickLeftTurn.whenPressed(new AutoPivotHead(10,.5));
+		quickRightTurn.whenPressed(new AutoPivotHead(-10,.5));
 		//holdingCubeButton.whenPressed(new AutoCubeHandle());
 	}
 	
