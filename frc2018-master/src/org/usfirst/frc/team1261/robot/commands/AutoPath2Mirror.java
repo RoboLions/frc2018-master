@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoPath2Mirror extends CommandGroup {
 
     public AutoPath2Mirror() {
-    	addSequential(new AutoMove(5.05, 0.0, 5)); //move forward
+    	addSequential(new AutoMove(5.2, 0.0, 5)); //move forward
     	addParallel(new AutoDartMove(.5, 0, 5));
     	System.out.println("Initiating first turn");
     	addSequential(new AutoPivotHead(90, 3)); //first turn

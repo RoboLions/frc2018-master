@@ -20,4 +20,4 @@ public class AutoPath5Mirror extends CommandGroup {
     	addSequential(new AutoMove(1.1, 0, 1)); //go to switch
     	addSequential(new ClawRetract());
     }
-}' '
+}

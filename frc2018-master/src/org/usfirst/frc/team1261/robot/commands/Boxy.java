@@ -67,7 +67,7 @@ public class Boxy extends CommandGroup {
     // Called just before this Command runs the first time
     protected void initialize() {
     	//Robot.actuator.boomMotor.setInverted(true);
-    	//Robot.actuator.boomMotor.setInverted(true);
+    	//Robot.actuator.vertMotor.setInverted(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
