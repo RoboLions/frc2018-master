@@ -76,15 +76,15 @@ public class JoystickDrive extends Command {
 		//rotate = 0.0;
 		//delta_v = 0.0;
 		//System.out.println("THROTTLE","ROTATE");
-		/*
-		if (Button == true)	{
-				Thetaheading.set = x;
+		
+		if (JOYSTICK.getRawButton(OI.BUTTON_A) == true)	{
+				target_yaw = -20 * Robot.limelight_x;
 		}
-		else(Button == false){
-				Thetaheading.set = 0.0;
+		else{
+				target_yaw = 0.0;
 		}
-		*/
-		Robot.driveTrain.pidTuneTeleop(throttle, rotate, 0);
+		
+		Robot.driveTrain.pidTuneTeleop(throttle, rotate, target_yaw);
 		// SmartDashboard.putNumber("LEnc", LEFT_ENCODER);
 		// SmartDashboard.putNumber("REnc", RIGHT_ENCODER);
 

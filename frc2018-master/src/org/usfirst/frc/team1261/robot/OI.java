@@ -69,7 +69,7 @@ public class OI {
 	public final Button acquireAlignButton = new JoystickButton(manipulatorJoystick, BUTTON_LEFT_BUMPER);
 	public final Button holdingCubeButton = new JoystickButton(manipulatorJoystick, BUTTON_RIGHT_BUMPER);
 	public final Button clawRetractButton = new JoystickButton(manipulatorJoystick, BUTTON_B);
-
+	public final Button limelight_acquireButton = new JoystickButton(driverJoystick, BUTTON_A);
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.

@@ -47,6 +47,9 @@ public class DartActuator extends Subsystem {
 	public static final double VERT_LENGTH = 0;
 	public static final double BOOM_LENGTH = 0;
 	
+	public static final double BOOM_OFFSET = 30;
+	public static final double VERT_OFFSET = 90; //50 or 40 // may change it from 90 to mess with angles 10 degree ooffset
+	
 	public static double VERT_ZERO = 0;
 	public static double BOOM_ZERO = 0;
 
@@ -125,12 +128,17 @@ public class DartActuator extends Subsystem {
     	return(vertMotor.getSensorCollection().getQuadraturePosition());
     }
     
-    /*
     public static double getBoomEncoderGivenAngle(double boom_angle) {
     	double new_angle = boom_angle - BOOM_OFFSET;
-    	
+    	double boom_enc = (new_angle * MAX_ENC_COUNTS) / 360;
+    	return(boom_enc);
     }
-    */
+    
+    public static double getVertEncoderGivenAngle(double vert_angle) {
+    	double new_angle = vert_angle - VERT_OFFSET;
+    	double vert_enc = (new_angle * MAX_ENC_COUNTS) / 360;
+    	return(vert_enc);
+    }
     
     // This func returns encoder angle in degrees of the boom arm
     public static double getBoomEncoderAngleinDegrees() {
@@ -181,6 +189,22 @@ public class DartActuator extends Subsystem {
 		SmartDashboard.putNumber("xe", xe);
 		SmartDashboard.putNumber("ye", ye);
 		return(xeye);
+	}
+	
+	public static double[] getAngles(double xe, double ye) {
+		double a = 1.018; // in meters
+		double b = 1.159; // in meters
+		double c = Math.sqrt((a * a) + (b * b));
+		double epsilon = Math.atan(ye / xe);
+		double phi = Math.acos(((a*a) + (b*b) - (c*c)) / (2 * a * b));
+		double theta = Math.acos(((a*a) + (c*c) - (b*b)) / (2 * a * c));
+		double vert_angle = theta + epsilon;
+		double boom_angle = phi;
+		
+		double[] BoomVert = new double[2];
+		BoomVert[0] = boom_angle;
+		BoomVert[1] = vert_angle;
+		return(BoomVert);
 	}
     
     public boolean isViolating() {

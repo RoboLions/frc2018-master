@@ -89,7 +89,8 @@ public class Robot extends TimedRobot {
 	public static final Climber climber = new Climber();
 	public static final DartActuator actuator = new DartActuator();
 	public static final Pneumatics manipulator = new Pneumatics();
-
+	public static double limelight_x;
+	public static double limrlight_y;
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 	
@@ -383,11 +384,11 @@ public class Robot extends TimedRobot {
 		
 		double x = (Double) tx.getDouble(0);
 		double y = (Double) ty.getDouble(0);
-		double area = (Double) ta.getDouble(0);
+		//double area = (Double) ta.getDouble(0);
 		
-		SmartDashboard.putNumber("limelight x", x);
-		SmartDashboard.putNumber("limelight y", y);
-		SmartDashboard.putNumber("limelight area", area);
+		SmartDashboard.putNumber("limelight x", limelight_x);
+		SmartDashboard.putNumber("limelight y", limrlight_y);
+		//SmartDashboard.putNumber("limelight area", area);
 		
 		cameraTable.getEntry("ledMode").setNumber(1);
 		cameraTable.getEntry("camMode").setNumber(0);
