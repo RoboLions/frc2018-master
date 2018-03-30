@@ -90,7 +90,7 @@ public class Robot extends TimedRobot {
 	public static final DartActuator actuator = new DartActuator();
 	public static final Pneumatics manipulator = new Pneumatics();
 	public static double limelight_x;
-	public static double limrlight_y;
+	public static double limelight_y;
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 	
@@ -258,8 +258,8 @@ public class Robot extends TimedRobot {
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		//gameData = "Left"; //place holder
-		System.out.println(gameData);
-		System.out.println(autoName);
+		//System.out.println(gameData);
+		//System.out.println(autoName);
 		/*
 		try {
 			Thread.sleep(1000);
@@ -382,12 +382,12 @@ public class Robot extends TimedRobot {
 		NetworkTableEntry ty = cameraTable.getEntry("ty");
 		NetworkTableEntry ta = cameraTable.getEntry("tz");
 		
-		double x = (Double) tx.getDouble(0);
-		double y = (Double) ty.getDouble(0);
+		limelight_x = (Double) tx.getDouble(0);
+		limelight_y = (Double) ty.getDouble(0);
 		//double area = (Double) ta.getDouble(0);
 		
 		SmartDashboard.putNumber("limelight x", limelight_x);
-		SmartDashboard.putNumber("limelight y", limrlight_y);
+		SmartDashboard.putNumber("limelight y", limelight_y);
 		//SmartDashboard.putNumber("limelight area", area);
 		
 		cameraTable.getEntry("ledMode").setNumber(1);

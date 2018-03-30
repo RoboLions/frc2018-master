@@ -11,6 +11,7 @@ import org.usfirst.frc.team1261.robot.commands.Auto180Turn;
 import org.usfirst.frc.team1261.robot.commands.AutoAcquire;
 import org.usfirst.frc.team1261.robot.commands.AutoClockwiseTurn;
 import org.usfirst.frc.team1261.robot.commands.AutoCounterclockwiseTurn;
+import org.usfirst.frc.team1261.robot.commands.AutoDartMove;
 import org.usfirst.frc.team1261.robot.commands.AutoPivotHead;
 import org.usfirst.frc.team1261.robot.commands.Climb;
 import org.usfirst.frc.team1261.robot.commands.ClawGrab;
@@ -105,7 +106,7 @@ public class OI {
 		reverseButton.whenPressed(new AutoPivotHead(180,2.5));
 		clawGrabButton.whenPressed(new ClawGrab()); 
 		clawRetractButton.whenPressed(new ClawRetract());
-		acquireAlignButton.whenPressed(new AutoAcquire());
+		acquireAlignButton.whenPressed(new AutoDartMove(0,700,1.5));
 		quickLeftTurn.whenPressed(new AutoPivotHead(10,.5));
 		quickRightTurn.whenPressed(new AutoPivotHead(-10,.5));
 		//holdingCubeButton.whenPressed(new AutoCubeHandle());

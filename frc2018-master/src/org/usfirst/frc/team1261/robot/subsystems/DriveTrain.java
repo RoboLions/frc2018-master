@@ -59,7 +59,7 @@ public class DriveTrain extends Subsystem {
 	public static final double MOTOR_GAIN_I = 0.0;	
 	public static final double MOTOR_GAIN_D = 0.3;
 	//public static final double MOTOR_RAMPRATE = 0.5; //1.25
-	public static final double MOTOR_RAMPRATE = .85; //1.25
+	public static final double MOTOR_RAMPRATE = .7; //1.25
 
 	WPI_TalonSRX leftMotorFront = RobotMap.leftDriveMotorFront;
 	WPI_TalonSRX leftMotorBack = RobotMap.leftDriveMotorBack;
@@ -136,7 +136,7 @@ public class DriveTrain extends Subsystem {
 		 rightMotorBack.config_kD(0,MOTOR_GAIN_D,TIMEOUT_MS);
 		 rightMotorBack.configClosedloopRamp(MOTOR_RAMPRATE, TIMEOUT_MS);
 		 
-		
+		/*
 		 sb.append("\toutleft:");
 		 sb.append(motorOutputLeft);
 		 sb.append("\toutright:");
@@ -151,6 +151,7 @@ public class DriveTrain extends Subsystem {
 		 leftMotorFront.set(ControlMode.Velocity, 0);
 		 rightMotorFront.set(ControlMode.Velocity, 0);
 		 /* append more signals to print when in speed mode. */
+		 /*
 		 sb.append("\terrleft:");
 		 sb.append(leftMotorFront.getClosedLoopError(0));
 		 sb.append("\terrright:");
@@ -459,9 +460,9 @@ public class DriveTrain extends Subsystem {
 		// meters per second --> encoder counts per 100 milliseconds
 		
 		//double speed_limit = 5; // speed limit one meter per second
-		double speed_limit = 2; // speed limit one meter per second // no suhmed speed limit should not be one meter per second // needs to be 1.5 to 2 meters per second
+		double speed_limit = 2.5; // speed limit one meter per second // no suhmed speed limit should not be one meter per second // needs to be 1.5 to 2 meters per second
 		double regular_speed_limit = speed_limit;
-		double acceleration_limit = .25;//.3
+		double acceleration_limit = .3;//.3
 		double rio_update = 0.05;
 		double safe_mode_speed = 0.4;
 		/*
@@ -475,7 +476,7 @@ public class DriveTrain extends Subsystem {
 		*/
 		if (OI.getDriverJoystick().getRawAxis(2) >= 0.5) {
 			speed_limit = safe_mode_speed;
-			System.out.println();
+			//System.out.println();
 		}
 		else {
 			speed_limit = regular_speed_limit;

@@ -50,6 +50,7 @@ public class AutoDartMove extends Command {
         	//Robot.actuator.setBoomPower(boomPower);
     	Robot.actuator.setBoomPosition(boomPos);
     	Robot.actuator.setVertPosition(vertPos);
+    	
     	}
     //}
 

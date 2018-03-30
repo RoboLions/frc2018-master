@@ -28,8 +28,8 @@ public class DartActuator extends Subsystem {
 	public boolean status = false;
 	
 	public static final int VERT_PIDF_PROFILE = 0;
-	public static final double VERT_GAIN_F = 1;
-	public static final double VERT_GAIN_P = 10; // 1.2
+	public static final double VERT_GAIN_F = 1; //1
+	public static final double VERT_GAIN_P = 10; // 1.2 //10
 	public static final double VERT_GAIN_I = 0;	
 	public static final double VERT_GAIN_D = 0;
 	public static final double VERT_RAMPRATE = 0;
@@ -42,12 +42,12 @@ public class DartActuator extends Subsystem {
 	public static final double MAX_ENC_BOOM = 400; 
 	public static final double MAX_ENC_VERT = 700; // these are for testing purposes
 
-	public static final double MAX_ENC_COUNTS = 5215; //8192;
+	public static final double MAX_ENC_COUNTS = 5860; //8192;
 	
 	public static final double VERT_LENGTH = 0;
 	public static final double BOOM_LENGTH = 0;
 	
-	public static final double BOOM_OFFSET = 30;
+	public static final double BOOM_OFFSET = 37;
 	public static final double VERT_OFFSET = 90; //50 or 40 // may change it from 90 to mess with angles 10 degree ooffset
 	
 	public static double VERT_ZERO = 0;
@@ -60,7 +60,7 @@ public class DartActuator extends Subsystem {
     // here. Call these from Commands.
 
 	public DartActuator() {
-		System.out.println("trololololollololllololololololololollol");
+		//System.out.println("trololololollololllololololololololollol");
 		
 		vertMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, TIMEOUT_MS);
 		boomMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, TIMEOUT_MS);
@@ -166,7 +166,7 @@ public class DartActuator extends Subsystem {
 		// boom_angle = phi
 		// vert_angle = gamma
 		double a = 1.011; // in Meters //40.5 - in inches // vert arm length
-		double b = 1.13; // in Meters //45 - in inches // boom arm length
+		double b = 1.14; // in Meters //45 - in inches // boom arm length
 		double c = Math.sqrt( // whatever is left in order to form a right triangle
 				    (a * a) +//Math.pow(a, 2) + 
 				    (b * b) -//Math.pow(b, 2) - 
@@ -192,8 +192,8 @@ public class DartActuator extends Subsystem {
 	}
 	
 	public static double[] getAngles(double xe, double ye) {
-		double a = 1.018; // in meters
-		double b = 1.159; // in meters
+		double a = 1.011; // in meters
+		double b = 1.13; // in meters
 		double c = Math.sqrt((a * a) + (b * b));
 		double epsilon = Math.atan(ye / xe);
 		double phi = Math.acos(((a*a) + (b*b) - (c*c)) / (2 * a * b));
@@ -223,7 +223,7 @@ public class DartActuator extends Subsystem {
     	
     	xe = endpoint[0];
     	ye = endpoint[1];
-    	
+    	/*
     	System.out.println("Boom Enc: " + Double.toString(boom_enc));
     	System.out.println("Vert Enc: " + Double.toString(vert_enc));
     	System.out.println("");
@@ -232,7 +232,8 @@ public class DartActuator extends Subsystem {
     	System.out.println("");
     	System.out.println("xe: " + Double.toString(xe));
     	System.out.println("ye: " + Double.toString(ye));
-    	if  (xe >= 1.092) { // 1.092 // 1.1 //1.1697 = new // fred: 1.0668 //comp : 1.114
+    	*/
+    	if  (xe >= 1.015) { // 1.092 // 1.1 //1.1697 = new // fred: 1.0668 //comp : 1.114
     		status = true;
     	} else {
     		status = false;

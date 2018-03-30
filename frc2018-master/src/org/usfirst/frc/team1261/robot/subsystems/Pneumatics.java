@@ -41,15 +41,17 @@ public class Pneumatics extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
+    	/*
     	for(int x = 0; x>100; x++) {
-    		System.out.println("bang,bang,bang,bang,bang,bang,bang,bang,bang,bang,bang");
+    		//System.out.println("bang,bang,bang,bang,bang,bang,bang,bang,bang,bang,bang");
     	}
+    	*/
     }
     
 	public void pistonOut() {
 		RobotMap.piston1.set(DoubleSolenoid.Value.kForward);
 		RobotMap.piston2.set(DoubleSolenoid.Value.kForward);
-		System.out.println("Pistons Out!");
+		//System.out.println("Pistons Out!");
 	}
     
 	public void pistonIn() {
@@ -63,7 +65,6 @@ public class Pneumatics extends Subsystem {
 		RobotMap.piston2.set(DoubleSolenoid.Value.kOff);
 		
 	}
-	
 	
 	public boolean checkPressure() {
 		boolean islowenough = getPressure() <= maximum_psi ;
