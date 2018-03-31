@@ -29,20 +29,31 @@ public class DartActuator extends Subsystem {
 	
 	public static final int VERT_PIDF_PROFILE = 0;
 	public static final double VERT_GAIN_F = 1; //1
-	public static final double VERT_GAIN_P = 10; // 1.2 //10
+	public static final double VERT_GAIN_P = 5; // 1.2 //10
+	//public static final double VERT_GAIN_F = 1;
+	//public static final double VERT_GAIN_P = 8; // 1.2
 	public static final double VERT_GAIN_I = 0;	
 	public static final double VERT_GAIN_D = 0;
-	public static final double VERT_RAMPRATE = 0;
+	public static final double VERT_RAMPRATE = 1;
 	public static final int BOOM_PIDF_PROFILE = 0;
 	public static final double BOOM_GAIN_F = 1;
 	public static final double BOOM_GAIN_P = 10; // 1.2
 	public static final double BOOM_GAIN_I = 0;	
 	public static final double BOOM_GAIN_D = 0;
-	public static final double BOOM_RAMPRATE = 0;//0.5;
-	public static final double MAX_ENC_BOOM = 400; 
+	public static final double BOOM_RAMPRATE = 1;//0.5;
+	public static final double MAX_ENC_BOOM = 1501; 
 	public static final double MAX_ENC_VERT = 700; // these are for testing purposes
 
-	public static final double MAX_ENC_COUNTS = 5860; //8192;
+	public static final double BOOM_PROP_GAIN = 8;
+	public static final double BOOM_INT_GAIN = 0.3;
+	double boom_int_term = 0;
+	
+	public static final double VERT_PROP_GAIN = 8;
+	public static final double VERT_INT_GAIN = .3;
+	double vert_int_term = 0;
+	
+	//public static final double MAX_ENC_COUNTS = 5461; //8192;
+	public static final double MAX_ENC_COUNTS = 4096; //8192;
 	
 	public static final double VERT_LENGTH = 0;
 	public static final double BOOM_LENGTH = 0;
@@ -143,6 +154,7 @@ public class DartActuator extends Subsystem {
     // This func returns encoder angle in degrees of the boom arm
     public static double getBoomEncoderAngleinDegrees() {
     	double angle_offset = 37;
+    // This func returns encoder angle in degrees of the boom arm
     	double boom_enc = Math.abs(getBoomEncoder());
     	double angle = (boom_enc *360) / MAX_ENC_COUNTS;
     	SmartDashboard.putNumber("boom angle", angle + angle_offset);
@@ -160,13 +172,12 @@ public class DartActuator extends Subsystem {
     
 	public static double[] getEndpoint(double boom_angle, double vert_angle) {
 		// boom_angle and vert_angle need to be in degrees
-		// 72.2 cm from pivot to end of frame parameter
-		// 16 in - 40.64
-		// lim = 112.84
 		// boom_angle = phi
 		// vert_angle = gamma
 		double a = 1.011; // in Meters //40.5 - in inches // vert arm length
-		double b = 1.14; // in Meters //45 - in inches // boom arm length
+		double b = 1.13; // in Meters //45 - in inches // boom arm length
+		//double a = 1.0287; // in Meters //40.5 - in inches // vert arm length
+		//double b = 1.143; // in Meters //45 - in inches // boom arm length
 		double c = Math.sqrt( // whatever is left in order to form a right triangle
 				    (a * a) +//Math.pow(a, 2) + 
 				    (b * b) -//Math.pow(b, 2) - 
@@ -232,8 +243,10 @@ public class DartActuator extends Subsystem {
     	System.out.println("");
     	System.out.println("xe: " + Double.toString(xe));
     	System.out.println("ye: " + Double.toString(ye));
+<<<<<<< HEAD
     	*/
-    	if  (xe >= 1.015) { // 1.092 // 1.1 //1.1697 = new // fred: 1.0668 //comp : 1.114
+    	if  (xe >= 1.02) { // 1.092 // 1.1 //1.1697 = new // fred: 1.0668 //comp : 1.114
+    //	if  (xe >= 1.16) { // 1.092 // 1.1 //1.1697 = new
     		status = true;
     	} else {
     		status = false;
@@ -267,6 +280,61 @@ public class DartActuator extends Subsystem {
     	}
     }
     
+    public void setVertPositionTheSequel(double pos) {
+    	if (isViolating()) {
+    		//System.out.println("You've extended farther than 16 inches!");
+    	} else {
+    		double vangle = getVertEncoderAngleinDegrees();
+        	//vertMotor.set(ControlMode.Position, pos);
+    		System.out.println("pos command: " + pos);
+    		System.out.println("vangle: " + vangle);
+        	//boomMotor.set(ControlMode.Position, pos);
+    		double error = pos - vangle;
+    		
+    		if (Math.abs(error) < 2) {
+        		vert_int_term += error;
+        	}
+        	if (Math.abs(error) > 5) {
+        		vert_int_term = 0;
+        	}
+
+        	//System.out.println("Error: " + error);
+        	double vert_pos_comm = ((error * VERT_PROP_GAIN) + (vert_int_term * VERT_INT_GAIN));
+        	//System.out.println("vert: " + vert_pos_comm);
+        	if (Math.abs(error) < 0.5) {
+        		vert_pos_comm = 0;
+        	}
+        	setVertSpeed(vert_pos_comm);
+    	}
+    }
+    
+    public void setBoomPositionTheSequel(double pos) {
+    	if (isViolating()) {
+    		//System.out.println("You've extended farther than 16 inches!");
+    	} else {
+    		double bangle = getBoomEncoderAngleinDegrees();
+    		System.out.println("pos command: " + pos);
+    		System.out.println("bangle: " + bangle);
+        	//boomMotor.set(ControlMode.Position, pos);
+    		double error = pos - bangle;
+    		
+    		if (Math.abs(error) < 2) {
+        		boom_int_term += error;
+        	}
+        	if (Math.abs(error) > 5) {
+        		boom_int_term = 0;
+        	}
+        	
+        	System.out.println("Error: " + error);
+        	double boom_pos_comm = ((error * BOOM_PROP_GAIN) + (boom_int_term * BOOM_INT_GAIN));
+        	System.out.println("boom: " + boom_pos_comm);
+        	if (Math.abs(error) < 0.5) {
+        		boom_pos_comm = 0;
+        	}
+        	setBoomSpeed(boom_pos_comm);
+    	}
+    }
+    
     public void setBoomRamp(double ramprate) {
 		 boomMotor.configClosedloopRamp(ramprate, TIMEOUT_MS);
     }
@@ -285,6 +353,8 @@ public class DartActuator extends Subsystem {
     public void stopAll() {
     	vertMotor.set(0);
     	boomMotor.set(0);
+    	//vertMotor.setPower(0);
+    	//boomMotor.setPower(0);
     }
     
     public void resetVertEncoder() {
@@ -296,7 +366,8 @@ public class DartActuator extends Subsystem {
 	}
     
     public void resetEncoders() {
-    	vertMotor.getSensorCollection().setQuadraturePosition(0, TIMEOUT_MS);
+    	resetVertEncoder();
+    	resetBoomEncoder();
     }
     
     public WPI_TalonSRX getVertMotor() {

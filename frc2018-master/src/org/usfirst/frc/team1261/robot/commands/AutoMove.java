@@ -13,7 +13,7 @@ public class AutoMove extends Command {
 	public static final double YAW_GAIN = 9;
 	public static final double YAW_INTEGRAL = .3;
 	public static final double POS_GAIN = 8;
-	public static final double POS_INTEGRAL = .025; //.05;
+	public static final double POS_INTEGRAL = 0.025; //.05;
 	public static final double POS_DERIVATIVE = 0;
 	double pos_cmd = 0; //3 meters is goals
 	double head_cmd = 0;
@@ -88,7 +88,7 @@ public class AutoMove extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return (Robot.driveTrain.distanceTravelledinMeters() > pos_cmd) || isTimedOut();
+        return ((Robot.driveTrain.distanceTravelledinMeters() >= pos_cmd) && (Math.abs(Robot.driveTrain.getRPH()[0]) >= Math.abs(head_cmd))); //|| isTimedOut();
     	//return Robot.driveTrain.getLeftEncoderPosition() >= 1000;
     }
 

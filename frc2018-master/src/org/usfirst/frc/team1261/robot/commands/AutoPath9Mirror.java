@@ -13,7 +13,9 @@ public class AutoPath9Mirror extends CommandGroup {
         addSequential(new AutoPivotHead(90, 3)); //first turn
         System.out.println("Moving to next to switch deposit area");
         addSequential(new AutoMove(4.4, 0, 10)); //move to parallel with switch deposit zone
-        addParallel(new AutoDartMove(0, 250, 3));//extend vert
+        addParallel(new AutoDartMove(95,90,3));
+    	//addSequential(new AutoVertDartMove(95, 3));
+    	//addParallel(new AutoBoomDartMove(90, 3));
         System.out.println("Initiating second turn");
         addSequential(new AutoPivotHead(-90, 3)); //second turn
         System.out.println("Initiate final approach");

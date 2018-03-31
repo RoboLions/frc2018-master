@@ -11,11 +11,13 @@ public class AutoPath1Mirror extends CommandGroup {
     	addSequential(new AutoMove(3.81, 0.0, 5)); //move forward
     	System.out.println("Now initiating turn");
     	addSequential(new AutoPivotHead(90,4));
-    	addParallel(new AutoDartMove(0, 250, 3));//extend vert
+    	addParallel(new AutoDartMove(95,90,3));
+    	//addSequential(new AutoVertDartMove(95, 3));
+    	//addParallel(new AutoBoomDartMove(90, 3));
     	//addSequential(new AutoPivotHead(-90,4));; //turn
     	System.out.println("Initiate final approach");
     	addSequential(new AutoMove(1, 0.0, 10)); //go to switch
-    	addParallel(new AutoDartMove(.5, 0.0, 3)); //extend vert
+    	//addParallel(new AutoBoomDartMove(.5, 0.0, 3)); //extend vert
     	addSequential(new ClawRetract());
     	//addSequential(new ClawRetract()); // release cube into switch
     }

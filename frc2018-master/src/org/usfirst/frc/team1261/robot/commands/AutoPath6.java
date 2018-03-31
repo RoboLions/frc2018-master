@@ -17,7 +17,9 @@ public class AutoPath6 extends CommandGroup {
         addSequential(new AutoCounterclockwiseTurn()); //second turn
         System.out.println("Moving across width of switch");
         addSequential(new AutoMove(3, 0, 2)); //move across width of switch
-        addParallel(new AutoDartMove(0, 250, 3));//extend vert
+        addParallel(new AutoDartMove(95,90,3));
+    	//addSequential(new AutoVertDartMove(95, 3));
+    	//addParallel(new AutoBoomDartMove(90, 3));
         System.out.println("Initiating third turn");
         addSequential(new AutoCounterclockwiseTurn()); //third turn
         System.out.println("Moving to next to the switch deposit area");

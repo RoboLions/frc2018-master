@@ -15,7 +15,7 @@ public class AutoMoveForward extends Command {
 	public static final double POS_GAIN = 8;
 	public static final double POS_INTEGRAL = .025;
 	public static final double POS_DERIVATIVE = 0;
-	public static final double POS_CMD = 3; //3 meters is goals
+	public static final double POS_CMD = 3.5; //3 meters is goals
 	public static final double HEAD_CMD = 0;
 	double yaw_int_term = 0;
 	double pos_int_term = 0;

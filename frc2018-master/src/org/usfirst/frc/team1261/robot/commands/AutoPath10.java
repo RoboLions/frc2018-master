@@ -12,11 +12,20 @@ public class AutoPath10 extends CommandGroup {
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
+    	
     	addSequential(new AutoMove(6,0, 7));
-    	addParallel(new AutoDartMove(50,500, 7));
+    	addParallel(new AutoDartMove(95,90,3));
+    	//addSequential(new AutoVertDartMove(95, 3));
+    	//addParallel(new AutoBoomDartMove(90, 3));
+    	
     	//addSequential(new AutoPivotHead(-90, 2));
+    	/*
+    	addSequential(new AutoMove(7,0, 10));
+    	addParallel(new AutoDartMove(50,500, 10));
+    	*/
+    	addSequential(new AutoPivotHead(-90, 2));
     	addSequential(new AutoMove(.5, 0, 3));
-    	//addSequential(new ClawRetract());
+    	addSequential(new ClawRetract());
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());

@@ -9,7 +9,7 @@ import org.usfirst.frc.team1261.robot.Robot;
 /**
  *
  */
-public class AutoDartMove extends Command {
+public class AutoBoomDartMove extends Command {
 	
 	//public static final Joystick JOYSTICK = OI.getManipulatorJoystick();
 	//public static final int BOOM_THROTTLE = OI.AXIS_RIGHT_STICK_Y;
@@ -17,11 +17,10 @@ public class AutoDartMove extends Command {
 	double boomPos;
 	double vertPos;
 
-    public AutoDartMove(double bcom, double vcom, double to) {
+    public AutoBoomDartMove(double bcom, double to) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.actuator);
-    	vertPos = vcom;
     	boomPos = bcom;
     	setTimeout(to);
     }
@@ -48,7 +47,7 @@ public class AutoDartMove extends Command {
         	//Robot.actuator.setVertPower(vertPower);
         	//Robot.actuator.setBoomPower(boomPower);
     	//Robot.actuator.setBoomPosition(boomPos);
-    	Robot.actuator.setVertPositionTheSequel(vertPos);
+    	//Robot.actuator.setVertPositionTheSequel(vertPos);
     	Robot.actuator.setBoomPositionTheSequel(boomPos);
     	//Robot.actuator.setVertPosition(vertPos);
     	

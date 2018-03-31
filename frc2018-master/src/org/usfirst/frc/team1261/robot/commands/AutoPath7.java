@@ -17,7 +17,9 @@ public class AutoPath7 extends CommandGroup {
         addSequential(new AutoClockwiseTurn()); //second turn
         System.out.println("Moving to next to switch deposit area");
         addSequential(new AutoMove(3.81, 0, 2)); //move to parallel with switch deposit zone
-        addParallel(new AutoDartMove(0, 250, 3));//extend vert
+        addParallel(new AutoDartMove(95,90,3));
+    	//addSequential(new AutoVertDartMove(95, 3));
+    	//addParallel(new AutoBoomDartMove(90, 3));
         System.out.println("Initiating final turn");
         addSequential(new AutoClockwiseTurn()); //final turn
         System.out.println("Initiate final approach");

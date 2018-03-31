@@ -13,7 +13,9 @@ public class AutoPath5 extends CommandGroup {
     	addSequential(new AutoPivotHead(90, 3)); //first turn
     	System.out.println("Moving to position next to switch");
     	addSequential(new AutoMove(1.4, 0, 5)); //move forward until parallel with switch deposit area
-    	addParallel(new AutoDartMove(0, 250, 3));//extend vert
+    	addParallel(new AutoDartMove(95,90,3));
+    	//addSequential(new AutoVertDartMove(95, 3));
+    	//addParallel(new AutoBoomDartMove(90, 3));
     	System.out.println("Initiating second turn");
     	addSequential(new AutoPivotHead(-90, 3)); //second turn
     	System.out.println("Initiate final approach");

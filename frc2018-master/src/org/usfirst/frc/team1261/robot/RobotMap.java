@@ -63,7 +63,7 @@ public class RobotMap {
 	public static WPI_TalonSRX leftDriveMotorBack = new WPI_TalonSRX(LEFT_BACK_DRIVE_PORT);
 	public static WPI_TalonSRX rightDriveMotorFront = new WPI_TalonSRX(RIGHT_FRONT_DRIVE_PORT);
 	public static WPI_TalonSRX rightDriveMotorBack = new WPI_TalonSRX(RIGHT_BACK_DRIVE_PORT);
-	public static WPI_TalonSRX climbMotor = new WPI_TalonSRX(CLIMBER_PORT);
+    public static WPI_TalonSRX climbMotor = new WPI_TalonSRX(CLIMBER_PORT);
 	//public static WPI_TalonSRX rackpinionMotor = new WPI_TalonSRX(RACK_PINION_PORT);
 	public static WPI_TalonSRX vertDartMotor = new WPI_TalonSRX(VERT_DART_ACTUATOR_PORT);
 	public static WPI_TalonSRX boomDartMotor = new WPI_TalonSRX(BOOM_DART_ACTUATOR_PORT);

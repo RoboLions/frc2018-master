@@ -11,17 +11,17 @@ public class Climb extends Command {
 	public static final double POWER = 1.0;
 
     public Climb() {
-        requires(Robot.climber); // Subsystem Dependency
+       requires(Robot.climber); // Subsystem Dependency
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.climber.stop();
+    	//Robot.climber.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.climber.setClimbPower(POWER);
+    	//Robot.climber.setClimbPower(POWER);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,7 +31,7 @@ public class Climb extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.climber.stop();
+    	//Robot.climber.stop();
     }
 
     // Called when another command which requires one or more of the same

@@ -16,7 +16,9 @@ public class AutoPath11 extends CommandGroup {
         addSequential(new AutoPivotHead(90, 3)); //first turn
         addSequential(new AutoMove(5.9, 0, 10)); //move forward to past the switch
         //addSequential(new AutoPivotHead(90, 3)); //first turn
-        addParallel(new AutoDartMove(50,500, 10));
+        addParallel(new AutoDartMove(95,90,3));
+    	//addSequential(new AutoVertDartMove(95, 3));
+    	//addParallel(new AutoBoomDartMove(90, 3));
         addSequential(new AutoPivotHead(-90, 3)); //first turn
         addSequential(new AutoMove(.5, 0, 3));
     	addSequential(new ClawRetract());

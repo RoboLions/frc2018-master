@@ -11,8 +11,9 @@ import org.usfirst.frc.team1261.robot.commands.Auto180Turn;
 import org.usfirst.frc.team1261.robot.commands.AutoAcquire;
 import org.usfirst.frc.team1261.robot.commands.AutoClockwiseTurn;
 import org.usfirst.frc.team1261.robot.commands.AutoCounterclockwiseTurn;
-import org.usfirst.frc.team1261.robot.commands.AutoDartMove;
+import org.usfirst.frc.team1261.robot.commands.AutoBoomDartMove;
 import org.usfirst.frc.team1261.robot.commands.AutoPivotHead;
+import org.usfirst.frc.team1261.robot.commands.AutoScale;
 import org.usfirst.frc.team1261.robot.commands.Climb;
 import org.usfirst.frc.team1261.robot.commands.ClawGrab;
 import org.usfirst.frc.team1261.robot.commands.ClawRetract;
@@ -55,7 +56,7 @@ public class OI {
 	public final Button quickRightTurn = new JoystickButton(driverJoystick, BUTTON_RIGHT_BUMPER);
 	public final Button ccwButton = new JoystickButton(driverJoystick, BUTTON_X);
 	public final Button cwButton = new JoystickButton(driverJoystick, BUTTON_B);
-	public final Button climbButton = new JoystickButton(manipulatorJoystick, BUTTON_START);
+	//public final Button climbButton = new JoystickButton(manipulatorJoystick, BUTTON_START);
 	//public final Button ccwButton = new JoystickButton(driverJoystick, BUTTON_X);
 	//public final Button cwButton = new JoystickButton(driverJoystick, BUTTON_B);
 	public final Button reverseButton = new JoystickButton(driverJoystick, BUTTON_Y);
@@ -68,7 +69,7 @@ public class OI {
 	*/
 	public final Button clawGrabButton = new JoystickButton(manipulatorJoystick, BUTTON_X);
 	public final Button acquireAlignButton = new JoystickButton(manipulatorJoystick, BUTTON_LEFT_BUMPER);
-	public final Button holdingCubeButton = new JoystickButton(manipulatorJoystick, BUTTON_RIGHT_BUMPER);
+	public final Button scaleScoreButton = new JoystickButton(manipulatorJoystick, BUTTON_RIGHT_BUMPER);
 	public final Button clawRetractButton = new JoystickButton(manipulatorJoystick, BUTTON_B);
 	public final Button limelight_acquireButton = new JoystickButton(driverJoystick, BUTTON_A);
 	//// CREATING BUTTONS
@@ -100,16 +101,16 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	
 	public OI() {
-		climbButton.whileHeld(new Climb());
+	//	climbButton.whileHeld(new Climb());
 		ccwButton.whenPressed(new AutoPivotHead(90,1.5));
 		cwButton.whenPressed(new AutoPivotHead(-90,1.5));
 		reverseButton.whenPressed(new AutoPivotHead(180,2.5));
 		clawGrabButton.whenPressed(new ClawGrab()); 
 		clawRetractButton.whenPressed(new ClawRetract());
-		acquireAlignButton.whenPressed(new AutoDartMove(0,700,1.5));
+		//acquireAlignButton.whenPressed(new AutoBoomDartMove(0,700,1.5));
 		quickLeftTurn.whenPressed(new AutoPivotHead(10,.5));
 		quickRightTurn.whenPressed(new AutoPivotHead(-10,.5));
-		//holdingCubeButton.whenPressed(new AutoCubeHandle());
+		scaleScoreButton.whenPressed(new AutoScale());
 	}
 	
 	public static Joystick getDriverJoystick() {

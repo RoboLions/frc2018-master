@@ -35,12 +35,12 @@ public class DriveTrain extends Subsystem {
 	//public static final double MOTOR_ENCODER_CODES_PER_REV = 1440; // 2017
 	//public static final int MOTOR_ENCODER_CODES_PER_REV = 4096;
 	public static final int TIMEOUT_MS = 10; //20
-	public static final double WHEEL_DIAMETER_2017 = 0.10;
+	//public static final double WHEEL_DIAMETER_2017 = 0.10;
 	public static final double DIAMETER_INCHES = 10;// 2018 10
 	public static final double IN_TO_M = .0254;//.0254
 	public static final double WHEEL_DIAMETER_2018 = DIAMETER_INCHES * IN_TO_M; // in meters
 	//public static final double WHEEL_DIAMETER_2018 = ((DIAMETER_INCHES * .94) * IN_TO_M); // in meters
-    public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER_2018 * Math.PI;//3.14159;//(Math.PI;)
+	public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER_2018 * Math.PI;//3.14159;//(Math.PI;)
 	//public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER_2017 * Math.PI;//3.14159;//(Math.PI;)
 	public static final double TICKS_PER_METER = (double)MOTOR_ENCODER_CODES_PER_REV * (double)(1/WHEEL_CIRCUMFERENCE);
 			//1.0/0.59208918;
@@ -59,7 +59,7 @@ public class DriveTrain extends Subsystem {
 	public static final double MOTOR_GAIN_I = 0.0;	
 	public static final double MOTOR_GAIN_D = 0.3;
 	//public static final double MOTOR_RAMPRATE = 0.5; //1.25
-	public static final double MOTOR_RAMPRATE = .7; //1.25
+	public static final double MOTOR_RAMPRATE = .8; //1.25
 
 	WPI_TalonSRX leftMotorFront = RobotMap.leftDriveMotorFront;
 	WPI_TalonSRX leftMotorBack = RobotMap.leftDriveMotorBack;
@@ -392,6 +392,8 @@ public class DriveTrain extends Subsystem {
 		// meters per second --> encoder counts per 100 milliseconds
 		
 		double speed_limit = 1.8; // 1
+		//double speed_limit = .5; // 1
+//>>>>>>> parent of b4351bc... ASHEVILLE DAY 0 CHANGES
 		
 		if (th > speed_limit) {
 			th = speed_limit;
@@ -450,7 +452,7 @@ public class DriveTrain extends Subsystem {
 		sb.append(rightMotorFront.getSelectedSensorVelocity(0));
        */
 
-		double throttle_scaler = 2.5; // 1.5 to 2
+		double throttle_scaler = 2; // 1.5 to 2
 		
 		//th = th * 1077;
 		
@@ -460,7 +462,7 @@ public class DriveTrain extends Subsystem {
 		// meters per second --> encoder counts per 100 milliseconds
 		
 		//double speed_limit = 5; // speed limit one meter per second
-		double speed_limit = 2.5; // speed limit one meter per second // no suhmed speed limit should not be one meter per second // needs to be 1.5 to 2 meters per second
+		double speed_limit = 2; // speed limit one meter per second // no suhmed speed limit should not be one meter per second // needs to be 1.5 to 2 meters per second
 		double regular_speed_limit = speed_limit;
 		double acceleration_limit = .3;//.3
 		double rio_update = 0.05;

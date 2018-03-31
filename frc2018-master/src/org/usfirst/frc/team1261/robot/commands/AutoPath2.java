@@ -9,12 +9,14 @@ public class AutoPath2 extends CommandGroup {
 
     public AutoPath2() {
     	addSequential(new AutoMove(5.2, 0.0, 5)); //move forward
-    	addParallel(new AutoDartMove(.5, 0, 5));
+    	//addParallel(new AutoBoomDartMove(.5, 0, 5));
     	System.out.println("Initiating first turn");
     	addSequential(new AutoPivotHead(-90, 3)); //first turn
     	System.out.println("Moving to position at back of switch");
     	addSequential(new AutoMove(1.6, 0, 3)); //move forward to postition parellel with switch deposit
-    	addParallel(new AutoDartMove(0, 250, 3));//extend vert
+    	addParallel(new AutoDartMove(95,90,3));
+    	//addSequential(new AutoVertDartMove(95, 3));
+    	//addParallel(new AutoBoomDartMove(90, 3));
     	System.out.println("Initiating Second Turn");
     	addSequential(new AutoPivotHead(-90, 3)); //second turn
     	System.out.println("Initiate final approach");
