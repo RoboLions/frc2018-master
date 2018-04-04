@@ -2,7 +2,7 @@ package org.usfirst.frc.team1261.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
-
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import org.usfirst.frc.team1261.robot.OI;
 import org.usfirst.frc.team1261.robot.Robot;
 
@@ -25,6 +25,8 @@ public class DartMove extends Command {
 	public static double theta_bar = 0;
 	public static double phi_bar = 0;
 
+	Joystick manipulatorJoystick = new Joystick(1);
+	Boolean rumblemanipulatorJoystick = false;
     public DartMove() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -102,7 +104,7 @@ public class DartMove extends Command {
         		double angle_compare = 180.0-Robot.actuator.getVertEncoderAngleinDegrees();
         		double boom_angle = Robot.actuator.getBoomEncoderAngleinDegrees();
         		if (boom_angle > angle_compare) {
-        			System.out.println("my names jeff");
+        			//System.out.println("my names jeff");
         			//Robot.actuator.setBoomPower(Math.abs(boomPower));
         			if (boomPower < 0) {
         				boomPower = 0;
@@ -118,6 +120,23 @@ public class DartMove extends Command {
         		}
         	}
         	
+        	//Boolean rumblemanipulatorJoystick = false;
+        	
+        	if (xe > 1.0) {
+        		rumblemanipulatorJoystick = true;
+        	}
+        	else {
+        		rumblemanipulatorJoystick = false;
+        	}
+        	if(rumblemanipulatorJoystick) {
+        		manipulatorJoystick.setRumble(RumbleType.kLeftRumble,0.5);     
+        		manipulatorJoystick.setRumble(RumbleType.kRightRumble,0.5);
+        	}
+        	else {
+        		manipulatorJoystick.setRumble(RumbleType.kLeftRumble,0.0);     
+        		manipulatorJoystick.setRumble(RumbleType.kRightRumble,0.0);
+        	}
+        	        	
         	Robot.actuator.setBoomPower(boomPower);
         	Robot.actuator.setVertPower(vertPower);
         	

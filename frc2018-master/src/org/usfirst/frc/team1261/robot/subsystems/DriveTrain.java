@@ -391,7 +391,7 @@ public class DriveTrain extends Subsystem {
 		// take input throttle from joystick and transform 
 		// meters per second --> encoder counts per 100 milliseconds
 		
-		double speed_limit = 1.8; // 1
+		double speed_limit = 1.0; // 1
 		//double speed_limit = .5; // 1
 //>>>>>>> parent of b4351bc... ASHEVILLE DAY 0 CHANGES
 		
