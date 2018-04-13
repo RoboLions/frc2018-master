@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Boxy extends CommandGroup {
 
     public Boxy() {
+    	
     	//Robot.actuator.resetBoomEncoder();
     	//addSequential(new AutoClockwiseTurn()); //first turn
     	//addSequential(new AutoPivotHead(90,4));
@@ -17,7 +18,7 @@ public class Boxy extends CommandGroup {
     	//addSequential(new AutoPivotHead(90,2));
     	//addSequential(new AutoPivotHead(-90,2))0
     	//addSequential(new AutoMove(3, 0, 3));
-    	addSequential(new AutoDartMove(90,95,3));//move into switch scoring pos
+    	addSequential(new AutoDartMove(85,100,3,3));//move into switch scoring pos
     	//addSequential(new ClawRetract());//drop
     	//addSequential(new AutoClockwiseTurn()); //first turn
     	//addSequential(new AutoPivotHead(-90,4));
@@ -32,7 +33,22 @@ public class Boxy extends CommandGroup {
     	//addSequential(new AutoPivotHead(180,4));
     	//addSequential(new AutoMoveDartEnd(1.03, 0.55));
     	
+    	//addSequential(new AutoMove(1,0, 5));
+    	addSequential(new AutoDartMove(130,90,4,100));
+    	 System.out.println("Intiating turn");
+    	//addSequential(new AutoVertDartMove(95, 3));
+    	//addParallel(new AutoBoomDartMove(90, 3));
     	
+    	//addSequential(new AutoPivotHead(-90, 2));
+    	/*
+    	addSequential(new AutoMove(7,0, 10));
+    	addParallel(new AutoDartMove(50,500, 10));
+    	*/
+    	//addSequential(new AutoPivotHead(-90, 2));
+    	 /*
+    	 System.out.println("final approach");
+    	addSequential(new AutoMove(.5, 0, 3));
+    	addSequential(new ClawRetract());
     	
     	//addSequential(new AutoMove(0.5, 0.0, 5)); //move forward
     	

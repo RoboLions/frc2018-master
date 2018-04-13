@@ -16,13 +16,15 @@ public class AutoDartMove extends Command {
 	//public static final int VERT_THROTTLE = OI.AXIS_LEFT_STICK_Y;
 	double boomPos;
 	double vertPos;
-
-    public AutoDartMove(double bcom, double vcom, double to) {
+	double speed_limit;
+	
+    public AutoDartMove(double bcom, double vcom, double to, double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.actuator);
     	vertPos = vcom;
     	boomPos = bcom;
+    	speed_limit = speed;
     	setTimeout(to);
     }
 
@@ -48,8 +50,8 @@ public class AutoDartMove extends Command {
         	//Robot.actuator.setVertPower(vertPower);
         	//Robot.actuator.setBoomPower(boomPower);
     	//Robot.actuator.setBoomPosition(boomPos);
-    	Robot.actuator.setVertPositionTheSequel(vertPos);
-    	Robot.actuator.setBoomPositionTheSequel(boomPos);
+    	Robot.actuator.setVertPositionTheSequel(vertPos, speed_limit);
+    	Robot.actuator.setBoomPositionTheSequel(boomPos, speed_limit);
     	//Robot.actuator.setVertPosition(vertPos);
     	
     	}
@@ -57,7 +59,8 @@ public class AutoDartMove extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+    	return ((Math.abs(Robot.actuator.getBoomEncoderAngleinDegrees() - boomPos) < 3) && (Math.abs(Robot.actuator.getVertEncoderAngleinDegrees() - vertPos) < 3)) || isTimedOut();
+        //return isTimedOut();
     }
 
     // Called once after isFinished returns true

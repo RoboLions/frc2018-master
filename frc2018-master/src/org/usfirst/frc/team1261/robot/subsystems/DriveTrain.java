@@ -36,17 +36,19 @@ public class DriveTrain extends Subsystem {
 	//public static final int MOTOR_ENCODER_CODES_PER_REV = 4096;
 	public static final int TIMEOUT_MS = 10; //20
 	//public static final double WHEEL_DIAMETER_2017 = 0.10;
-	public static final double DIAMETER_INCHES = 10;// 2018 10
+	//public static final double DIAMETER_INCHES = 7.15;// 2018 10 // bot 2 = 7.5
+	public static final double DIAMETER_INCHES = 10;// 2018 10 // bot 2 = 7.5
 	public static final double IN_TO_M = .0254;//.0254
 	public static final double WHEEL_DIAMETER_2018 = DIAMETER_INCHES * IN_TO_M; // in meters
 	//public static final double WHEEL_DIAMETER_2018 = ((DIAMETER_INCHES * .94) * IN_TO_M); // in meters
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER_2018 * Math.PI;//3.14159;//(Math.PI;)
 	//public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER_2017 * Math.PI;//3.14159;//(Math.PI;)
-	public static final double TICKS_PER_METER = (double)MOTOR_ENCODER_CODES_PER_REV * (double)(1/WHEEL_CIRCUMFERENCE);
+	//public static final double TICKS_PER_METER = (double)MOTOR_ENCODER_CODES_PER_REV * (double)(1/WHEEL_CIRCUMFERENCE);
+	public static final double TICKS_PER_METER = 7102;
 			//1.0/0.59208918;
 //			//1.6889348;
 	public static final double METERS_PER_TICKS = 1 / TICKS_PER_METER; 
-	
+	//public static final double METERS_PER_TICKS = 7102; 
 	
 	
 	// Ticks per meter should stay like this
@@ -391,7 +393,7 @@ public class DriveTrain extends Subsystem {
 		// take input throttle from joystick and transform 
 		// meters per second --> encoder counts per 100 milliseconds
 		
-		double speed_limit = 1.0; // 1
+		double speed_limit = 1.8; // 1
 		//double speed_limit = .5; // 1
 //>>>>>>> parent of b4351bc... ASHEVILLE DAY 0 CHANGES
 		
@@ -462,11 +464,13 @@ public class DriveTrain extends Subsystem {
 		// meters per second --> encoder counts per 100 milliseconds
 		
 		//double speed_limit = 5; // speed limit one meter per second
-		double speed_limit = 2; // speed limit one meter per second // no suhmed speed limit should not be one meter per second // needs to be 1.5 to 2 meters per second
+		//double speed_limit = 2; // speed limit one meter per second // no suhmed speed limit should not be one meter per second // needs to be 1.5 to 2 meters per second
+		double speed_limit = 1.5;
 		double regular_speed_limit = speed_limit;
 		double acceleration_limit = .3;//.3
 		double rio_update = 0.05;
 		double safe_mode_speed = 0.4;
+		double boost_mode_speed = 3;
 		/*
 		if (OI.getDriverJoystick().getRawButton(1)) {
 			speed_limit = safe_mode_speed;
@@ -478,11 +482,23 @@ public class DriveTrain extends Subsystem {
 		*/
 		if (OI.getDriverJoystick().getRawAxis(2) >= 0.5) {
 			speed_limit = safe_mode_speed;
-			//System.out.println();
+			//System.out.println();q
+		}
+		else if (OI.getDriverJoystick().getRawButton(6)){
+			speed_limit = boost_mode_speed;
 		}
 		else {
 			speed_limit = regular_speed_limit;
 		}
+		/*
+		if (OI.getDriverJoystick().getRawAxis(3) >= 0.5) {
+			speed_limit = boost_mode_speed;
+			//System.out.println();q
+		}
+		else {
+			speed_limit = regular_speed_limit;
+		}
+		*/
 		throttle_scaler = speed_limit;
 		th = throttle_scaler * th; // to meters per second
 		
@@ -591,4 +607,3 @@ public class DriveTrain extends Subsystem {
 	}
 	*/
 }
-

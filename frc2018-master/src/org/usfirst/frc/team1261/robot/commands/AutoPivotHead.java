@@ -24,14 +24,14 @@ public class AutoPivotHead extends Command {
 	    public AutoPivotHead(double heading, double timeout) {
 	    	requires(Robot.driveTrain);
 	    	setTimeout(timeout);
-	    	target_yaw = heading ;
+	    	target_yaw = heading;
 	    	
 	    }
 
 	    // Called just before this Command runs the first time
 	    protected void initialize() {
 	    	Robot.driveTrain.ZeroYaw();
-	    	//Robot.driveTrain.stop();
+	    	Robot.driveTrain.stop();
 	    	Robot.driveTrain.resetEncoders();
 	    }
 
@@ -98,6 +98,7 @@ public class AutoPivotHead extends Command {
 	    // Called once after isFinished returns true
 	    protected void end() {
 	    	Robot.driveTrain.stop();
+	    	//Robot.driveTrain.stop();
 	    }
 
 	    // Called when another command which requires one or more of the same

@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoMove extends Command {
+public class AutoMoveReverse extends Command {
 
 	public static final double POWER = .4;
 	public static final double YAW_GAIN = 9;
@@ -15,14 +15,14 @@ public class AutoMove extends Command {
 	public static final double POS_GAIN = 8;
 	public static final double POS_INTEGRAL = 0.025; //.05;
 	public static final double POS_DERIVATIVE = 0;
-	double pos_cmd = 0; //3 meters is goals
+	double pos_cmd = 0; //this function should allow both forward and reverse movement
 	double head_cmd = 0;
 	double yaw_int_term = 0;
 	double pos_int_term = 0;
 	
 	double target_yaw = head_cmd; //is not final because if it was we cannot change it.
     
-    public AutoMove(double pos, double head, double to) {
+    public AutoMoveReverse(double pos, double head, double to) {
     	requires(Robot.driveTrain);
     	pos_cmd = pos;
     	head_cmd = head;
@@ -90,7 +90,7 @@ public class AutoMove extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return ((Robot.driveTrain.distanceTravelledinMeters() >= pos_cmd) && (Math.abs(Robot.driveTrain.getRPH()[0]) >= Math.abs(head_cmd))); //|| isTimedOut();
+        return ((Math.abs(Robot.driveTrain.distanceTravelledinMeters()) >= Math.abs(pos_cmd)) && (Math.abs(Robot.driveTrain.getRPH()[0]) >= Math.abs(head_cmd))); //|| isTimedOut();
     	//return Robot.driveTrain.getLeftEncoderPosition() >= 1000;
     }
 

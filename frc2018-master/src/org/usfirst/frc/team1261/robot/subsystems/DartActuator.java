@@ -67,6 +67,9 @@ public class DartActuator extends Subsystem {
 	public static double xe = 0;
 	public static double ye = 0;
 	
+	public double boom_angle = 0;
+	public double vert_angle = 0;
+	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -222,8 +225,8 @@ public class DartActuator extends Subsystem {
     	double boom_enc = getBoomEncoder();
     	double vert_enc = getVertEncoder();
     	    	
-    	double boom_angle = getBoomEncoderAngleinDegrees();
-    	double vert_angle = getVertEncoderAngleinDegrees();
+    	 boom_angle = getBoomEncoderAngleinDegrees();
+    	 vert_angle = getVertEncoderAngleinDegrees();
     	
     	// get encoder counts to degrees
     	
@@ -280,7 +283,7 @@ public class DartActuator extends Subsystem {
     	}
     }
     
-    public void setVertPositionTheSequel(double pos) {
+    public void setVertPositionTheSequel(double pos, double speed_limit) {
     	if (isViolating()) {
     		//System.out.println("You've extended farther than 16 inches!");
     	} else {
@@ -304,11 +307,17 @@ public class DartActuator extends Subsystem {
         	if (Math.abs(error) < 0.5) {
         		vert_pos_comm = 0;
         	}
+        	if(vert_pos_comm > speed_limit) {
+        		vert_pos_comm = speed_limit;
+    	}
+    	else if(vert_pos_comm < -speed_limit) {
+    			vert_pos_comm = -speed_limit;
+    	}
         	setVertSpeed(vert_pos_comm);
     	}
     }
     
-    public void setBoomPositionTheSequel(double pos) {
+    public void setBoomPositionTheSequel(double pos,double speed_limit) {
     	if (isViolating()) {
     		//System.out.println("You've extended farther than 16 inches!");
     	} else {
@@ -330,6 +339,12 @@ public class DartActuator extends Subsystem {
         	System.out.println("boom: " + boom_pos_comm);
         	if (Math.abs(error) < 0.5) {
         		boom_pos_comm = 0;
+        	}
+        	if(boom_pos_comm > speed_limit) {
+        			boom_pos_comm = speed_limit;
+        	}
+        	else if(boom_pos_comm < -speed_limit) {
+        			boom_pos_comm = -speed_limit;
         	}
         	setBoomSpeed(boom_pos_comm);
     	}
@@ -444,4 +459,3 @@ public class DartActuator extends Subsystem {
     	}
     }
 }
-

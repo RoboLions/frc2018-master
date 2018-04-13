@@ -47,7 +47,7 @@ public class AutoVertDartMove extends Command {
         	//Robot.actuator.setVertPower(vertPower);
         	//Robot.actuator.setBoomPower(boomPower);
     	//Robot.actuator.setBoomPosition(boomPos);
-    	Robot.actuator.setVertPositionTheSequel(vertPos);
+    	//Robot.actuator.setVertPositionTheSequel(vertPos);
     	//Robot.actuator.setBoomPositionTheSequel(boomPos);
     	//Robot.actuator.setVertPosition(vertPos);
     	

@@ -1,6 +1,12 @@
 package org.usfirst.frc.team1261.robot.commands;
 
+import org.usfirst.frc.team1261.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
+
+//package org.usfirst.frc.team1261.robot.subsystems;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
@@ -22,7 +28,15 @@ public class AutoAcquire extends CommandGroup {
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
-
+    	double vangle = Robot.actuator.boom_angle;
+    	System.out.println("Space for rent.........");
+    	//if (vangle > 90) {
+    		addSequential(new AutoDartMove(55, 90, 2.5, 1000));
+    		
+    	//}
+    		addSequential(new AutoDartMove(55, 50, 2.5, 1000));
+    	
+    	
         // A command group will require all of the subsystems that each member
         // would require.
         // e.g. if Command1 requires chassis, and Command2 requires arm,

@@ -7,7 +7,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class AutoPath6Mirror extends CommandGroup {
 
-    public AutoPath6Mirror() {
+    public AutoPath6Mirror(boolean execute) {
+    	if(execute == true) {
+    	System.out.println("***AUTO PATH 6 MIRROR***");
     	addSequential(new AutoMove(3, 0, 2)); //move forward
         System.out.println("Initiating first turn");
         addSequential(new AutoCounterclockwiseTurn()); //first turn
@@ -17,7 +19,7 @@ public class AutoPath6Mirror extends CommandGroup {
         addSequential(new AutoClockwiseTurn()); //second turn
         System.out.println("Moving across width of switch");
         addSequential(new AutoMove(3, 0, 2)); //move across width of switch
-        addParallel(new AutoDartMove(95,90,3));
+        addParallel(new AutoDartMove(95,90,3,100));
     	//addSequential(new AutoVertDartMove(95, 3));
     	//addParallel(new AutoBoomDartMove(90, 3));
         System.out.println("Initiating third turn");
@@ -29,5 +31,6 @@ public class AutoPath6Mirror extends CommandGroup {
         System.out.println("Initiate final approach");
         addSequential(new AutoMove(.25, 0, .75)); //go to switch
         addSequential(new ClawRetract());
+    	}
     }
 }

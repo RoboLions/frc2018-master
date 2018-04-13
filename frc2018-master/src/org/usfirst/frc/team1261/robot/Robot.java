@@ -44,6 +44,8 @@ import org.usfirst.frc.team1261.robot.commands.AutoPath10;
 import org.usfirst.frc.team1261.robot.commands.AutoPath10Mirror;
 import org.usfirst.frc.team1261.robot.commands.AutoPath11;
 import org.usfirst.frc.team1261.robot.commands.AutoPath11Mirror;
+import org.usfirst.frc.team1261.robot.commands.AutoPath13;
+import org.usfirst.frc.team1261.robot.commands.AutoPath13Mirror;
 import org.usfirst.frc.team1261.robot.commands.AutoPath1Mirror;
 import org.usfirst.frc.team1261.robot.commands.AutoPath2;
 import org.usfirst.frc.team1261.robot.commands.AutoPath2Mirror;
@@ -151,28 +153,30 @@ public class Robot extends TimedRobot {
 		m_chooser.addDefault("Forward (all positions)", new AutoMoveForward());
 		//m_chooser.addDefault("Clockwise turn", new AutoClockwiseTurn());
 		//m_chooser.addDefault("Counterclockwise turn", new AutoCounterclockwiseTurn());
-		m_chooser.addObject("Left Start, Left Switch, Middle Side", new AutoPath1());
-		m_chooser.addObject("Right Start, Right Switch, Middle Side", new AutoPath1Mirror());
-		m_chooser.addObject("Left Start, Left Switch, Back Side", new AutoPath2());
-		m_chooser.addObject("Right Start, Right Switch, Back Side", new AutoPath2Mirror());
-		m_chooser.addObject("Left Start, Right Switch, Back Side", new AutoPath3());
-		m_chooser.addObject("Right Start, Left Switch, Back Side", new AutoPath3Mirror());
-		m_chooser.addObject("Left Start, Right Switch, Middle Side", new AutoPath4Mirror());
-		m_chooser.addObject("Right Start, Left Switch, Middle Side", new AutoPath4());
-		m_chooser.addObject("Center Start, Left Switch, Front Side", new AutoPath5());
-		m_chooser.addObject("Center Start, Right Switch, Front Side", new AutoPath5Mirror());
-		m_chooser.addObject("Center Start, Left Switch, Back Side", new AutoPath6());
-		m_chooser.addObject("Center Start, Right Switch, Back Side", new AutoPath6Mirror());
-		m_chooser.addObject("Center Start, Left Switch, Middle Side", new AutoPath7());
-		m_chooser.addObject("Center Start, Right Switch, Middle Side", new AutoPath7Mirror());
-		m_chooser.addObject("Left Start, Left Switch, Front Side", new AutoPath8());
-		m_chooser.addObject("Right Start, Right Switch, Front Side", new AutoPath8Mirror());
-		m_chooser.addObject("Left Start, Right Switch, Front Side", new AutoPath9());
-		m_chooser.addObject("Right Start, Left Switch, Front Side", new AutoPath9Mirror());
-		m_chooser.addObject("Left Start, Left Scale", new AutoPath10());
-		m_chooser.addObject("Right Start, Right Scale", new AutoPath10Mirror());
-		m_chooser.addObject("Left Start, Right Scale", new AutoPath11());
-		m_chooser.addObject("Right Start, Left Scale", new AutoPath11Mirror());
+		m_chooser.addObject("Left Start, Left Switch, Middle Side", new AutoPath1(true));
+		m_chooser.addObject("Right Start, Right Switch, Middle Side", new AutoPath1Mirror(true));
+		m_chooser.addObject("Left Start, Left Switch, Back Side", new AutoPath2(true));
+		m_chooser.addObject("Right Start, Right Switch, Back Side", new AutoPath2Mirror(true));
+		m_chooser.addObject("Left Start, Right Switch, Back Side", new AutoPath3(true));
+		m_chooser.addObject("Right Start, Left Switch, Back Side", new AutoPath3Mirror(true));
+		m_chooser.addObject("Left Start, Right Switch, Middle Side", new AutoPath4(true));
+		m_chooser.addObject("Right Start, Left Switch, Middle Side", new AutoPath4Mirror(true));
+		m_chooser.addObject("Center Start, Left Switch, Front Side", new AutoPath5(true));
+		m_chooser.addObject("Center Start, Right Switch, Front Side", new AutoPath5Mirror(true));
+		m_chooser.addObject("Center Start, Left Switch, Back Side", new AutoPath6(true));
+		m_chooser.addObject("Center Start, Right Switch, Back Side", new AutoPath6Mirror(true));
+		m_chooser.addObject("Center Start, Left Switch, Middle Side", new AutoPath7(true));
+		m_chooser.addObject("Center Start, Right Switch, Middle Side", new AutoPath7Mirror(true));
+		m_chooser.addObject("Left Start, Left Switch, Front Side", new AutoPath8(true));
+		m_chooser.addObject("Right Start, Right Switch, Front Side", new AutoPath8Mirror(true));
+		m_chooser.addObject("Left Start, Right Switch, Front Side", new AutoPath9(true));
+		m_chooser.addObject("Right Start, Left Switch, Front Side", new AutoPath9Mirror(true));
+		m_chooser.addObject("Left Start, Left Scale", new AutoPath10(true));
+		m_chooser.addObject("Right Start, Right Scale", new AutoPath10Mirror(true));
+		m_chooser.addObject("Left Start, Right Scale", new AutoPath11(true));
+		m_chooser.addObject("Right Start, Left Scale", new AutoPath11Mirror(true));
+		m_chooser.addObject("Left 2-scale", new AutoPath13());
+		m_chooser.addObject("Right 2-scale", new AutoPath13Mirror());
 		m_chooser.addObject("Box", new Boxy());
 		m_chooser.addObject("Reset", new EncoderReset());
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -271,60 +275,64 @@ public class Robot extends TimedRobot {
         if(gameData.length() > 0) {
 		  if(gameData.charAt(0) == 'L')
 		  {
-			  if (autoName == new AutoPath1Mirror().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath4Mirror();
-			  } else if (autoName == new AutoPath2Mirror().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath3Mirror();
-			  } else if (autoName == new AutoPath3Mirror().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath2Mirror();
-			  } else if (autoName == new AutoPath4Mirror().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath1Mirror();
-			  } else if (autoName == new AutoPath5Mirror().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath5();
-			  } else if (autoName == new AutoPath6Mirror().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath6();
-			  } else if (autoName == new AutoPath7Mirror().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath7();
-			  } else if (autoName == new AutoPath8Mirror().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath9Mirror();
-			  } else if (autoName == new AutoPath9Mirror().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath8Mirror();
-			  } 
+			  if (autoName.equals(new AutoPath1Mirror(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath4Mirror(true);
+			  } else if (autoName.equals(new AutoPath2Mirror(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath3Mirror(true);
+			  } else if (autoName.equals(new AutoPath3Mirror(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath2Mirror(true);
+			  } else if (autoName.equals(new AutoPath4(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath1(true);
+			  } else if (autoName.equals(new AutoPath5Mirror(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath5(true);
+			  } else if (autoName.equals(new AutoPath6Mirror(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath6(true);
+			  } else if (autoName.equals(new AutoPath7Mirror(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath7(true);
+			  } else if (autoName.equals(new AutoPath8Mirror(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath9Mirror(true);
+			  } else if (autoName.equals(new AutoPath9Mirror(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath8Mirror(true);
+			  }
 			//Put left auto code here
 		  } else {
-			  if (autoName == new AutoPath1().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath4();
-			  } else if (autoName == new AutoPath2().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath3();
-			  } else if (autoName == new AutoPath3().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath2();
-			  } else if (autoName == new AutoPath4().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath1();
-			  } else if (autoName == new AutoPath5().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath5Mirror();
-			  } else if (autoName == new AutoPath6().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath6Mirror();
-			  } else if (autoName == new AutoPath7().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath7Mirror();
-			  } else if (autoName == new AutoPath8().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath9();
-			  } else if (autoName == new AutoPath9().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath8();
+			  if (autoName.equals(new AutoPath1(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath4(true);
+			  } else if (autoName.equals(new AutoPath2(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath3(true);
+			  } else if (autoName.equals(new AutoPath3(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath2(true);
+			  } else if (autoName.equals(new AutoPath4Mirror(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath1Mirror(true);
+			  } else if (autoName.equals(new AutoPath5(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath5Mirror(true);
+			  } else if (autoName.equals(new AutoPath6(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath6Mirror(true);
+			  } else if (autoName.equals(new AutoPath7(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath7Mirror(true);
+			  } else if (autoName.equals(new AutoPath8(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath9(true);
+			  } else if (autoName.equals(new AutoPath9(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath8(true);
 			  } 
 			//Put right auto code here
 		  }
 		  if(gameData.charAt(1) == 'L') {
-			  if (autoName == new AutoPath10Mirror().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath11Mirror();
-			  } else if (autoName == new AutoPath11().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath10();
+			  if (autoName.equals(new AutoPath10Mirror(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath11Mirror(true);
+			  } else if (autoName.equals(new AutoPath11(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath10(true);
+			  } else if (autoName.equals(new AutoPath13Mirror().getClass().getName())) {
+				  m_autonomousCommand = new AutoPath11Mirror(true);
 			  }
 		  }
 		  else {
-			  if (autoName == new AutoPath11Mirror().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath10Mirror();
-			  } else if (autoName == new AutoPath10().getClass().getName()) {
-				  m_autonomousCommand = new AutoPath11();
+			  if (autoName.equals(new AutoPath11Mirror(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath10Mirror(true);
+			  } else if (autoName.equals(new AutoPath10(false).getClass().getName())) {
+				  m_autonomousCommand = new AutoPath11(true);
+			  } else if (autoName.equals(new AutoPath13().getClass().getName())) {
+				  m_autonomousCommand = new AutoPath10Mirror(true);
 			  }
 		  }
        }
@@ -410,3 +418,4 @@ public class Robot extends TimedRobot {
 	public void testPeriodic() {
 	}
 }
+
