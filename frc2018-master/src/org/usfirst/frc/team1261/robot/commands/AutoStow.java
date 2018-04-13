@@ -18,7 +18,7 @@ public class AutoStow extends CommandGroup {
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
-    	addSequential(new AutoDartMove(60,100,3,250));
+    	addSequential(new AutoDartMove(60,90,3,250));
     	addSequential(new AutoDartMove(40, 90,3, 250)); //this is intermediate. move here before you acquire
         // A command group will require all of the subsystems that each member
         // would require.

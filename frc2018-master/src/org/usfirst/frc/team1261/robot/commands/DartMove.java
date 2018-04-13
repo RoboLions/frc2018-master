@@ -140,8 +140,8 @@ public class DartMove extends Command {
         	Robot.actuator.setBoomPower(boomPower);
         	Robot.actuator.setVertPower(vertPower);
         	
-        	//Robot.actuator.setBoomSpeed(1000 * boomPower);
-        	//Robot.actuator.setVertSpeed(1000 * vertPower);
+        	//Robot.actuator.setBoomSpeed(10000 * boomPower);
+        	//Robot.actuator.setVertSpeed(10000 * vertPower);
         	
         	/*
         	if(violating && boomPower > 0) {
