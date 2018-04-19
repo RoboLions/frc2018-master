@@ -54,13 +54,16 @@ public class AutoPivotHead extends Command {
 	    	}
 	    	if (yaw_error < -15.0) {
 	    		yaw_int_term = 0;
+	    	}/*
+	    	if (Math.abs(yaw_error) < 0.5) {
+	    		yaw_kerror = 0;
 	    	}
-	    	
+	    	*/
 	    	// this is a test 
 	    	
 	    	System.out.println(yaw_error);
 	    	double delta_v = yaw_error * YAW_GAIN + yaw_int_term * YAW_INTEGRAL;
-	    	
+
 	    	/*double th = POWER;	// th is a velocity command
 	    	double enc_pos = Robot.driveTrain.distanceTravelledinMeters();
 	    	double pos_err = POS_CMD - enc_pos;
@@ -84,15 +87,14 @@ public class AutoPivotHead extends Command {
 	    	//double ro = 0;
 	    	Robot.driveTrain.pidTuneAuto(0.0,//we do not need to do position correction 
 	    			                     0.0,//we do not need to do pivot operations 
-	    			                     delta_v);//push in the yaw error
+	    			                     delta_v, 1.0);//push in the yaw error
 	    	
 	    	//Robot.driveTrain.getRobotDrive().tankDrive(POWER, -POWER);
 	    }
 
 	    // Make this return true when this Command no longer needs to run execute()
 	    protected boolean isFinished() {
-	       // return (Math.abs(yaw_error) > 1);
-	    	return isTimedOut();
+	        return isTimedOut(); //return (Math.abs(yaw_error) < 1) ||
 	    }
 
 	    // Called once after isFinished returns true

@@ -83,7 +83,7 @@ public class AutoMoveReverse extends Command {
     	//posn_err = pos_cmd-enc_posn
     	//th = posn_err*kp + posn_err_int*ki - enc_vel*kd
     	double ro = 0;
-    	Robot.driveTrain.pidTuneAuto(th, ro, delta_v);
+    	Robot.driveTrain.pidTuneAuto(th, ro, delta_v, 1.0);
     	
     	//Robot.driveTrain.getRobotDrive().tankDrive(POWER, -POWER);
     }

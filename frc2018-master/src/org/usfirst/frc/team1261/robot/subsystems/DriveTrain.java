@@ -56,7 +56,7 @@ public class DriveTrain extends Subsystem {
 	// public static final double MOTOR_NOMINAL_OUTPUT_VOLTAGE = 0.0;
 	// public static final double MOTOR_PEAK_OUTPUT_VOLTAGE = 12.0;
 	public static final int MOTOR_PIDF_PROFILE = 0;
-	public static final double MOTOR_GAIN_F = .6;
+	public static final double MOTOR_GAIN_F = 1;
 	public static final double MOTOR_GAIN_P = 1.2; // 1.2
 	public static final double MOTOR_GAIN_I = 0.0;	
 	public static final double MOTOR_GAIN_D = 0.3;
@@ -362,7 +362,7 @@ public class DriveTrain extends Subsystem {
 	
 	public void pidTuneAuto(double th,//velocity throttle 
 			                double ro, //rotation from joystick
-			                double off) {//heading offset
+			                double off, double speed) {//heading offset
 		
 		// 2018 test code to perfect motion control
 		// Uses Pigeon IMU and Closed Loop Velocity
@@ -384,16 +384,16 @@ public class DriveTrain extends Subsystem {
 		sb.append(rightMotorFront.getSelectedSensorVelocity(0));
        */
 
-		double throttle_scaler = 1.8;
+		double throttle_scaler = 2;
 		
 		//th = th * 1077;
-		
+	
 		th = throttle_scaler * th; // to meters per second
 		
 		// take input throttle from joystick and transform 
 		// meters per second --> encoder counts per 100 milliseconds
 		
-		double speed_limit = 1.8; // 1
+		double speed_limit = speed; // 1
 		//double speed_limit = .5; // 1
 //>>>>>>> parent of b4351bc... ASHEVILLE DAY 0 CHANGES
 		
@@ -555,11 +555,11 @@ public class DriveTrain extends Subsystem {
 		
 		
 		// ro is being dampened by the speed limit, even though it should be unbounded
-		if (ro > speed_limit) {
-			ro = speed_limit;
+		if (ro > .6) {
+			ro = .6;
 		}
-		if (ro < -speed_limit) {
-			ro = -speed_limit;
+		if (ro < -.6) {
+			ro = -.6;
 		}
 		
 		// circumference of wheel = 4 * pi

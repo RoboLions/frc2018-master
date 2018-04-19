@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1261.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -7,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import org.usfirst.frc.team1261.robot.OI;
 import org.usfirst.frc.team1261.robot.RobotMap;
 
 import org.usfirst.frc.team1261.robot.commands.DartMove;
@@ -19,6 +21,10 @@ import org.usfirst.frc.team1261.robot.commands.DartMove;
 // I know it says "DartActuator" singular, but this subsystem operates both actuators (Top and Bottom) separately at the same time
 
 public class DartActuator extends Subsystem {
+	
+	public static final Joystick JOYSTICK = OI.getManipulatorJoystick();
+	public static final int BOOM_THROTTLE = OI.AXIS_RIGHT_STICK_Y;
+	public static final int VERT_THROTTLE = OI.AXIS_LEFT_STICK_Y;
 	
 	private static final int TIMEOUT_MS = 10;
 	
@@ -37,7 +43,7 @@ public class DartActuator extends Subsystem {
 	public static final double VERT_RAMPRATE = 1;
 	public static final int BOOM_PIDF_PROFILE = 0;
 	public static final double BOOM_GAIN_F = 1;
-	public static final double BOOM_GAIN_P = 10; // 1.2
+	public static final double BOOM_GAIN_P = 5; // 1.2 // 10
 	public static final double BOOM_GAIN_I = 0;	
 	public static final double BOOM_GAIN_D = 0;
 	public static final double BOOM_RAMPRATE = 1;//0.5;
@@ -126,6 +132,10 @@ public class DartActuator extends Subsystem {
     public void revertSensorPhase() { //for use in teleop
     	vertMotor.setSensorPhase(true);
 		boomMotor.setSensorPhase(false);
+    }
+    /*
+    public boolean isMoving() {
+    	return (JOYSTICK.getRawAxis(BOOM_THROTTLE) > 0.2) || (JOYSTICK.getRawAxis(VERT_THROTTLE));
     }
     /*
     public void invertActuators() { //for use in teleop

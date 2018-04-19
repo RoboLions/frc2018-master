@@ -83,7 +83,7 @@ public class AutoTurn extends Command {
     	
     	//pos_err = pos_cmd-enc_pos;
     	double ro = 0;
-    	Robot.driveTrain.pidTuneAuto(th, ro, delta_v);
+    	Robot.driveTrain.pidTuneAuto(th, ro, delta_v, 1.0);
     	
     	//Robot.driveTrain.getRobotDrive().tankDrive(POWER, -POWER);
     }

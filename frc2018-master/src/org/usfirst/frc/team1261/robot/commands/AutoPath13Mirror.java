@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoPath13Mirror extends CommandGroup {
 
     public AutoPath13Mirror() {
-    	addSequential(new AutoMove(6.55,0, 4.5));
+    	addSequential(new AutoMove(6.55,0, 4.5, 1.8));
     	addSequential(new AutoDartMove(130,100,2,300));
     	 //System.out.println("Intiating turn");
     	//addSequential(new AutoVertDartMove(95, 3));
@@ -21,13 +21,13 @@ public class AutoPath13Mirror extends CommandGroup {
     	*/
     	addSequential(new AutoPivotHead(90, 1.5));
     	 //System.out.println("final approach");
-    	addSequential(new AutoMove(.1, 0, 2));
+    	addSequential(new AutoMove(.1, 0, 2, 1.8));
     	addSequential(new ClawRetract());
     	addSequential(new AutoMoveReverse(-.1, 0, 1));
     	addSequential(new AutoStow());
     	addSequential(new AutoPivotHead(-60, 1));
-    	addSequential(new AutoMove(2,0,1.5));
-    	addSequential(new AutoMove(.5,-30,1));
+    	addSequential(new AutoMove(2,0,1.5, 1.8));
+    	addSequential(new AutoMove(.5,-30,1, 1.8));
     	addSequential(new AutoAcquire());
     	addSequential(new ClawGrab());
     	addSequential(new AutoStow());
@@ -35,7 +35,7 @@ public class AutoPath13Mirror extends CommandGroup {
     	addSequential(new AutoMoveReverse(-2,0,1.5));
     	addSequential(new AutoPivotHead(60, 1));
     	addSequential(new AutoDartMove(130,100,2,300));
-    	addSequential(new AutoMove(.1, 0, 2));
+    	addSequential(new AutoMove(.1, 0, 2, 1.8));
     	addSequential(new ClawRetract());
         // Add Commands here:
         // e.g. addSequential(new Command1());

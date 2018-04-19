@@ -14,7 +14,7 @@ public class AutoPath10 extends CommandGroup {
         // these will run in order.
     	if(execute == true) {
     	System.out.println("***AUTO PATH 10***");
-    	addSequential(new AutoMove(6.55,0, 5));
+    	addSequential(new AutoMove(6.55,0, 5, 1.8));
     	addSequential(new AutoDartMove(130,100,2.5,250));
     	 System.out.println("Intiating turn");
     	//addSequential(new AutoVertDartMove(95, 3));
@@ -27,7 +27,7 @@ public class AutoPath10 extends CommandGroup {
     	*/
     	addSequential(new AutoPivotHead(-90, 2));
     	 System.out.println("final approach");
-    	addSequential(new AutoMove(.1, 0, 3));
+    	addSequential(new AutoMove(.3, 0, 3, .5));
     	addSequential(new AutoPivotHead(-10,1));
     	addSequential(new ClawRetract());
         // To run multiple commands at the same time,

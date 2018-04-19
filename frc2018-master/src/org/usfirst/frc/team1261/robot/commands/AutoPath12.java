@@ -24,7 +24,7 @@ public class AutoPath12 extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new AutoMove(6.55,0, 4.5));
+    	addSequential(new AutoMove(6.55,0, 4.5, 1.8));
     	addSequential(new AutoDartMove(130,100,2,300));
     	 //System.out.println("Intiating turn");
     	//addSequential(new AutoVertDartMove(95, 3));
@@ -37,13 +37,13 @@ public class AutoPath12 extends CommandGroup {
     	*/
     	addSequential(new AutoPivotHead(-90, 1.5));
     	 //System.out.println("final approach");
-    	addSequential(new AutoMove(.1, 0, 2));
+    	addSequential(new AutoMove(.1, 0, 2, 1.8));
     	addSequential(new ClawRetract());
     	addSequential(new AutoMoveReverse(-.1, 0, 1));
     	addSequential(new AutoStow());
     	addSequential(new AutoPivotHead(60, 1.5));
-    	addSequential(new AutoMove(2,0,1.5));
-    	addSequential(new AutoMove(.5,30,1));
+    	addSequential(new AutoMove(2,0,1.5, 1.8));
+    	addSequential(new AutoMove(.5,30,1, 1.8));
     	addSequential(new AutoAcquire());
     	addSequential(new ClawGrab());
     	addSequential(new AutoMoveReverse(-.1, 0, .5));

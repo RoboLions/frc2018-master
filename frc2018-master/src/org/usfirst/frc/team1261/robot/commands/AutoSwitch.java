@@ -12,7 +12,7 @@ public class AutoSwitch extends CommandGroup {
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
-    	addSequential(new AutoDartMove(95, 100, 3, 200)); 
+    	addSequential(new AutoDartMove(95, 100, 1.5, 500)); 
     	//addSequential(new AutoCubeHandle()); 
         // To run multiple commands at the same time,
         // use addParallel()

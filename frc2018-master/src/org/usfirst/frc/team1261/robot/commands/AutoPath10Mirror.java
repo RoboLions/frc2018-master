@@ -17,14 +17,14 @@ public class AutoPath10Mirror extends CommandGroup {
     	if(execute == true) {
     	System.out.println("***AUTO PATH 10 MIRROR***");
     	System.out.println("***AUTO PATH 10 MIRROR***");
-    	addSequential(new AutoMove(6.55,0, 15));
-    	addSequential(new AutoDartMove(130,100,2.5,250));
+    	addSequential(new AutoMove(6.55,0, 5,1.8));
+    	addSequential(new AutoDartMove(130,100,2.5,500));
     	 System.out.println("Intiating turn");
     	//Robot.driveTrain.resetEncoders();
     	addSequential(new AutoPivotHead(90, 1.5));
     	//Robot.driveTrain.resetEncoders();
     	 System.out.println("final approach");
-    	addSequential(new AutoMove(.1, 0, 3));
+    	addSequential(new AutoMove(.3, 0, 3, 0.5));
     	addSequential(new AutoPivotHead(-20,1));
     	addSequential(new ClawRetract());
     	//addSequential(new AutoVertDartMove(95, 3));

@@ -24,8 +24,8 @@ public class AutoScale extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new AutoDartMove(70, 100, 2,300));
-    	addSequential(new AutoDartMove(130,100,2,300));
+    	addSequential(new AutoDartMove(70, 100, 1.3,600));
+    	addSequential(new AutoDartMove(130,100,1.3,300));
     	//addSequential(new AutoVertDartMove(95, 3));
     	//addParallel(new AutoBoomDartMove(90, 3));
     }

@@ -19,14 +19,16 @@ public class AutoMove extends Command {
 	double head_cmd = 0;
 	double yaw_int_term = 0;
 	double pos_int_term = 0;
+	double speed = 0;
 	
 	double target_yaw = head_cmd; //is not final because if it was we cannot change it.
     
-    public AutoMove(double pos, double head, double to) {
+    public AutoMove(double pos, double head, double to, double sp) {
     	requires(Robot.driveTrain);
     	pos_cmd = pos;
     	head_cmd = head;
     	setTimeout(to);
+    	speed = sp;
     }
 
     // Called just before this Command runs the first time
@@ -83,7 +85,7 @@ public class AutoMove extends Command {
     	//posn_err = pos_cmd-enc_posn
     	//th = posn_err*kp + posn_err_int*ki - enc_vel*kd
     	double ro = 0;
-    	Robot.driveTrain.pidTuneAuto(th, ro, delta_v);
+    	Robot.driveTrain.pidTuneAuto(th, ro, delta_v, speed);
     	
     	//Robot.driveTrain.getRobotDrive().tankDrive(POWER, -POWER);
     }
